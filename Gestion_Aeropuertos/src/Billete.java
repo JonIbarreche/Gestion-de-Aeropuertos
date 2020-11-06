@@ -1,4 +1,6 @@
-public class Billete{
+import java.util.Objects;
+
+public class Billete {
 
     private String tipo;
     private int adulto;
@@ -128,12 +130,7 @@ public class Billete{
             return false;
         }
         Billete billete = (Billete) o;
-        return Objects.equals(tipo, billete.tipo) && adulto == billete.adulto && ninyo == billete.ninyo && maletas == billete.maletas && Objects.equals(pais_o, billete.pais_o) && Objects.equals(pais_d, billete.pais_d) && Objects.equals(clase, billete.clase);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(tipo, adulto, ninyo, maletas, pais_o, pais_d, clase);
+        return Objects.equals(tipo, billete.tipo) && adulto == billete.adulto && ninyo == billete.ninyo && maletas == billete.maletas && pais_o == billete.pais_o && pais_d == billete.pais_d && Objects.equals(clase, billete.clase);
     }
 
     @Override

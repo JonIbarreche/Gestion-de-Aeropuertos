@@ -1,4 +1,6 @@
-package gestion_aeropuertos.aeropuertos.src.main.administracion_aeropuertos;
+
+
+import java.util.Objects;
 
 public class Aeropuerto {
     String nombre_aeropuerto;
@@ -64,12 +66,7 @@ public class Aeropuerto {
             return false;
         }
         Aeropuerto aeropuerto = (Aeropuerto) o;
-        return Objects.equals(nombre_aeropuerto, aeropuerto.nombre_aeropuerto) && Objects.equals(ciudad_aeropuerto, aeropuerto.ciudad_aeropuerto) && Objects.equals(pais_aeropuerto, aeropuerto.pais_aeropuerto);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nombre_aeropuerto, ciudad_aeropuerto, pais_aeropuerto);
+        return nombre_aeropuerto == aeropuerto.nombre_aeropuerto && ciudad_aeropuerto == aeropuerto.ciudad_aeropuerto && pais_aeropuerto == aeropuerto.pais_aeropuerto;
     }
 
     @Override

@@ -1,4 +1,6 @@
-public class Usuario{
+import java.util.Objects;
+
+public class Usuario {
     private String user;
     private String password;
     private String nomnbre;
@@ -110,12 +112,7 @@ public class Usuario{
             return false;
         }
         Usuario usuario = (Usuario) o;
-        return Objects.equals(user, usuario.user) && Objects.equals(password, usuario.password) && Objects.equals(nomnbre, usuario.nomnbre) && Objects.equals(apellido, usuario.apellido) && Objects.equals(DNI, usuario.DNI) && telefono == usuario.telefono;
-    }
-
-    @Override
-    public String hashCode() {
-        return Objects.hash(user, password, nomnbre, apellido, DNI, telefono);
+        return user == usuario.user && password == usuario.password && nomnbre == usuario.nomnbre && apellido == usuario.apellido && DNI == usuario.DNI && telefono == usuario.telefono;
     }
 
     @Override
