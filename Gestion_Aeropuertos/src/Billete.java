@@ -4,14 +4,12 @@ public class Billete{
     private int adulto;
     private int ninyo;
     private int maletas;
-    private String[] pais_o;
-    private String[] pais_d;
+    private String pais_o;
+    private String pais_d;
     private String clase;
-
-
     
 
-    public Billete(String tipo, int adulto, int ninyo, int maletas, String[] pais_o, String[] pais_d, String clase) {
+    public Billete(String tipo, int adulto, int ninyo, int maletas, String pais_o, String pais_d, String clase) {
         this.tipo = tipo;
         this.adulto = adulto;
         this.ninyo = ninyo;
@@ -63,19 +61,19 @@ public class Billete{
         this.maletas = maletas;
     }
 
-    public String[] getPais_o() {
+    public String getPais_o() {
         return this.pais_o;
     }
 
-    public void setPais_o(String[] pais_o) {
+    public void setPais_o(String pais_o) {
         this.pais_o = pais_o;
     }
 
-    public String[] getPais_d() {
+    public String getPais_d() {
         return this.pais_d;
     }
 
-    public void setPais_d(String[] pais_d) {
+    public void setPais_d(String pais_d) {
         this.pais_d = pais_d;
     }
 
@@ -107,12 +105,12 @@ public class Billete{
         return this;
     }
 
-    public Billete pais_o(String[] pais_o) {
+    public Billete pais_o(String pais_o) {
         this.pais_o = pais_o;
         return this;
     }
 
-    public Billete pais_d(String[] pais_d) {
+    public Billete pais_d(String pais_d) {
         this.pais_d = pais_d;
         return this;
     }
