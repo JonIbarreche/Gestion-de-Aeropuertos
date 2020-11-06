@@ -1,7 +1,4 @@
 
-
-import java.util.Objects;
-
 public class Aeropuerto {
     String nombre_aeropuerto;
     String ciudad_aeropuerto;
