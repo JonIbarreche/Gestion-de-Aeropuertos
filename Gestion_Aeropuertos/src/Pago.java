@@ -80,12 +80,12 @@ public class Pago{
         Pago pago = (Pago) o;
         return tarjeta == pago.tarjeta && anyo == pago.anyo && mes == pago.mes && CVV == pago.CVV;
     }
-
+/*
     @Override
     public int hashCode() {
         return Objects.hash(tarjeta, anyo, mes, CVV);
     }
-
+*/
     @Override
     public String toString() {
         return "{" +

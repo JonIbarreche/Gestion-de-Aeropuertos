@@ -1,5 +1,5 @@
 public class Usuario{
-    pivate String user;
+    private String user;
     private String password;
     private String nomnbre;
     private String apellido;
