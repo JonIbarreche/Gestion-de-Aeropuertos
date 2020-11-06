@@ -1,5 +1,3 @@
-package gestion_aeropuertos.aeropuertos.src.main.administracion_aeropuertos;
-
 import javax.swing.SwingUtilities;
 
 public class App {
