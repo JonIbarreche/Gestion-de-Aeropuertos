@@ -76,7 +76,8 @@ public class Login extends JFrame {
 		txtUsername.setBounds(10, 10, 170, 20);
 		panel.add(txtUsername);
 		txtUsername.setColumns(10);
-		
+	
+
 		JLabel lblImagenMan = new JLabel("");
 		//
 		Image img_user = new ImageIcon(this.getClass().getResource("/man.png")).getImage();
@@ -94,7 +95,7 @@ public class Login extends JFrame {
 		txtPassword.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(txtPassword.getText().equals("Contraseña")) {
+				if(String.valueOf(txtPassword.getPassword()).equals("Contraseña")) {
 					txtPassword.setEchoChar('-');
 					txtPassword.setText("");
 				}else {
@@ -104,7 +105,7 @@ public class Login extends JFrame {
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(txtPassword.getText().equals("")) {
+				if(String.valueOf(txtPassword.getPassword()).equals("")) {
 					txtPassword.setText("Contraseña");
 					txtPassword.setEchoChar((char)0);
 				}
@@ -121,12 +122,12 @@ public class Login extends JFrame {
 		pnlBtnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(txtUsername.getText().equals("admin") && txtPassword.getText().equals("admin")){
+				if(txtUsername.getText().equals("admin") && String.valueOf(txtPassword.getPassword()).equals("admin")){
 				//los datos son correctos
 					lblLoginMessage.setText("");
 					JOptionPane.showMessageDialog(null, "Sesion Iniciada Correctamente");
 				}else if(txtUsername.getText().equals("") || txtUsername.getText().equals("Usuario") ||
-						txtPassword.getText().equals("") || txtPassword.getText().equals("Contraseña")) {
+				String.valueOf(txtPassword.getPassword()).equals("") || String.valueOf(txtPassword.getPassword()).equals("Contraseña")) {
 					lblLoginMessage.setText("Por favor rellena los campos!");
 				}else {
 					lblLoginMessage.setText("Usuario y contraseña no coinciden");
