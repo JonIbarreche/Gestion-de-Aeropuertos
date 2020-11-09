@@ -79,8 +79,8 @@ public class Login extends JFrame {
 	
 
 		JLabel lblImagenMan = new JLabel("");
-		//
-		Image img_user = new ImageIcon(this.getClass().getResource("/man.png")).getImage();
+	
+		Image img_user = new ImageIcon("../img/man.png").getImage();
 		lblImagenMan.setIcon(new ImageIcon(img_user));
 		lblImagenMan.setBounds(218, -2, 32, 32);
 		panel.add(lblImagenMan);
@@ -101,7 +101,6 @@ public class Login extends JFrame {
 				}else {
 					txtPassword.selectAll();
 				}
-				
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -163,7 +162,7 @@ public class Login extends JFrame {
 		
 		JLabel lblImageLlave = new JLabel("");
 		//
-		Image img_llave = new ImageIcon(this.getClass().getResource("/llave.png")).getImage();
+		Image img_llave = new ImageIcon("../img/llave.png").getImage();
 		lblImageLlave.setIcon(new ImageIcon(img_llave));
 		lblImageLlave.setBounds(74, 10, 32, 32);
 		pnlBtnLogin.add(lblImageLlave);
@@ -197,13 +196,13 @@ public class Login extends JFrame {
 		contentPane.add(lblLoginMessage);
 		
 		JLabel lblImageAirplane = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/airplane1.png")).getImage();
+		Image img = new ImageIcon("../img/airplane1.png").getImage();
 		lblImageAirplane.setIcon(new ImageIcon(img));
 		lblImageAirplane.setBounds(232, 10, 128, 128);
 		contentPane.add(lblImageAirplane);
 		
 		JLabel lblImageCerradura = new JLabel("");
-		Image img_Cerradura = new ImageIcon(this.getClass().getResource("/cerradura.png")).getImage();
+		Image img_Cerradura = new ImageIcon("../img/cerradura.png").getImage();
 		lblImageCerradura.setBounds(391, 213, 32, 32);
 		contentPane.add(lblImageCerradura);
 		lblImageCerradura.setIcon(new ImageIcon(img_Cerradura));
