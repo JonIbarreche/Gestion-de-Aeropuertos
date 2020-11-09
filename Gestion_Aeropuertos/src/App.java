@@ -6,8 +6,11 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
-					frame.setVisible(true);
+				Login frameLogin = new Login();
+				frameLogin.setVisible(true);
+				//Inicio frameInicio = new Inicio();
+				//frameInicio.setVisible(true);
+					//locations Locations = new ocations();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
