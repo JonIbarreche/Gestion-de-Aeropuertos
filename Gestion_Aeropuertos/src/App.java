@@ -6,8 +6,8 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-				//VentanaLogin frameLogin = new VentanaLogin();
-				//frameLogin.setVisible(true);
+				VentanaLogin frameLogin = new VentanaLogin();
+				frameLogin.setVisible(true);
 				VentanaInicio frameInicio = new VentanaInicio();
 				frameInicio.setVisible(true);
 					//locations Locations = new ocations();
