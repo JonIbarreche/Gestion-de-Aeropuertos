@@ -1,4 +1,4 @@
-public class Pago{
+public class Pago {
     private int tarjeta;
     private int anyo;
     private int mes;
@@ -91,5 +91,8 @@ public class Pago{
             "}";
     }
 
+    public int numTarjeta(){
+        return numTarjeta();
+    }
 
 }
