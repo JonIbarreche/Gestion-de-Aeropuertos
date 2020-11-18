@@ -23,7 +23,7 @@ public class Vuelo extends Aeropuerto{
     public Vuelo() {
         this.contadorVuelo++;
         this.idVuelo = contadorVuelo;
-        this.companyia = companyia;
+        this.companyia = "";
         this.aeropuertOrigen = null;
         this.aeropuertoDestino = null;
         this.hora_o = "";
