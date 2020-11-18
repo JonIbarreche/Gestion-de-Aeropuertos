@@ -1,36 +1,63 @@
+import java.util.Objects;
 
 public class Usuario {
-    private String user;
-    private String password;
-    private String nomnbre;
-    private String apellido;
-    private String DNI;
-    private String telefono;
-
-    public Usuario(String user, String password, String nomnbre, String apellido, String DNI, String telefono) {
-        this.user = user;
+    public static int contadorUsuario = 0; 
+    protected int idUsuario;
+    protected boolean admin;
+    protected String usuario;
+    protected String password;
+    protected String nombreUsuario;
+    protected String apellidoUsuario;
+    protected String dniUsuario;
+    protected String telefonoUsuario;
+    protected Pago tarjetaUsuario;
+    
+    public Usuario(int idUsuario, boolean admin, String usuario, String password, String nombreUsuario, String apellidoUsuario, String dniUsuario, String telefonoUsuario, Pago tarjetaUsuario) {
+        this.idUsuario = contadorUsuario;
+        this.admin = admin;
+        this.usuario = usuario;
         this.password = password;
-        this.nomnbre = nomnbre;
-        this.apellido = apellido;
-        this.DNI = DNI;
-        this.telefono = telefono;
+        this.nombreUsuario = nombreUsuario;
+        this.apellidoUsuario = apellidoUsuario;
+        this.dniUsuario = dniUsuario;
+        this.telefonoUsuario = telefonoUsuario;
+        this.tarjetaUsuario = tarjetaUsuario;
     }
 
-     public Usuario() {
-        this.user = "";
+    public Usuario() {
+        contadorUsuario++;
+        this.idUsuario = contadorUsuario;
+        this.admin = false;
+        this.usuario = "";
         this.password = "";
-        this.nomnbre = "";
-        this.apellido = "";
-        this.DNI = "";
-        this.telefono = "";
+        this.nombreUsuario = "";
+        this.apellidoUsuario = "";
+        this.dniUsuario = "";
+        this.telefonoUsuario = "";
+        this.tarjetaUsuario = null;
+    }
+    public int getIdUsuario() {
+        return this.idUsuario;
     }
 
-    public String getUser() {
-        return this.user;
+    public boolean isAdmin() {
+        return this.admin;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public boolean getAdmin() {
+        return this.admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public String getUsuario() {
+        return this.usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getPassword() {
@@ -41,40 +68,58 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getNomnbre() {
-        return this.nomnbre;
+    public String getNombreUsuario() {
+        return this.nombreUsuario;
     }
 
-    public void setNomnbre(String nomnbre) {
-        this.nomnbre = nomnbre;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
-    public String getApellido() {
-        return this.apellido;
+    public String getApellidoUsuario() {
+        return this.apellidoUsuario;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidoUsuario(String apellidoUsuario) {
+        this.apellidoUsuario = apellidoUsuario;
     }
 
-    public String getDNI() {
-        return this.DNI;
+    public String getDniUsuario() {
+        return this.dniUsuario;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
+    public void setDniUsuario(String dniUsuario) {
+        this.dniUsuario = dniUsuario;
     }
 
-    public String getTelefono() {
-        return this.telefono;
+    public String getTelefonoUsuario() {
+        return this.telefonoUsuario;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefonoUsuario(String telefonoUsuario) {
+        this.telefonoUsuario = telefonoUsuario;
     }
 
-    public Usuario user(String user) {
-        this.user = user;
+    public Pago getTarjetaUsuario() {
+        return this.tarjetaUsuario;
+    }
+
+    public void setTarjetaUsuario(Pago tarjetaUsuario) {
+        this.tarjetaUsuario = tarjetaUsuario;
+    }
+
+    public Usuario idUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+        return this;
+    }
+
+    public Usuario admin(boolean admin) {
+        this.admin = admin;
+        return this;
+    }
+
+    public Usuario usuario(String usuario) {
+        this.usuario = usuario;
         return this;
     }
 
@@ -83,23 +128,28 @@ public class Usuario {
         return this;
     }
 
-    public Usuario nomnbre(String nomnbre) {
-        this.nomnbre = nomnbre;
+    public Usuario nombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
         return this;
     }
 
-    public Usuario apellido(String apellido) {
-        this.apellido = apellido;
+    public Usuario apellidoUsuario(String apellidoUsuario) {
+        this.apellidoUsuario = apellidoUsuario;
         return this;
     }
 
-    public Usuario DNI(String DNI) {
-        this.DNI = DNI;
+    public Usuario dniUsuario(String dniUsuario) {
+        this.dniUsuario = dniUsuario;
         return this;
     }
 
-    public Usuario telefono(String telefono) {
-        this.telefono = telefono;
+    public Usuario telefonoUsuario(String telefonoUsuario) {
+        this.telefonoUsuario = telefonoUsuario;
+        return this;
+    }
+
+    public Usuario tarjetaUsuario(Pago tarjetaUsuario) {
+        this.tarjetaUsuario = tarjetaUsuario;
         return this;
     }
 
@@ -111,19 +161,28 @@ public class Usuario {
             return false;
         }
         Usuario usuario = (Usuario) o;
-        return user == usuario.user && password == usuario.password && nomnbre == usuario.nomnbre && apellido == usuario.apellido && DNI == usuario.DNI && telefono == usuario.telefono;
+        return idUsuario == usuario.idUsuario && admin == usuario.admin && Objects.equals(usuario, usuario.usuario) && Objects.equals(password, usuario.password) && Objects.equals(nombreUsuario, usuario.nombreUsuario) && Objects.equals(apellidoUsuario, usuario.apellidoUsuario) && Objects.equals(dniUsuario, usuario.dniUsuario) && Objects.equals(telefonoUsuario, usuario.telefonoUsuario) && Objects.equals(tarjetaUsuario, usuario.tarjetaUsuario);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUsuario, admin, usuario, password, nombreUsuario, apellidoUsuario, dniUsuario, telefonoUsuario, tarjetaUsuario);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " user='" + getUser() + "'" +
+            " idUsuario='" + getIdUsuario() + "'" +
+            ", admin='" + isAdmin() + "'" +
+            ", usuario='" + getUsuario() + "'" +
             ", password='" + getPassword() + "'" +
-            ", nomnbre='" + getNomnbre() + "'" +
-            ", apellido='" + getApellido() + "'" +
-            ", DNI='" + getDNI() + "'" +
-            ", telefono='" + getTelefono() + "'" +
+            ", nombreUsuario='" + getNombreUsuario() + "'" +
+            ", apellidoUsuario='" + getApellidoUsuario() + "'" +
+            ", dniUsuario='" + getDniUsuario() + "'" +
+            ", telefonoUsuario='" + getTelefonoUsuario() + "'" +
+            ", tarjetaUsuario='" + getTarjetaUsuario() + "'" +
             "}";
     }
 
+   
 }
