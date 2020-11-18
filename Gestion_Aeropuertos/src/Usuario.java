@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Usuario {
+public abstract class Usuario {
     public static int contadorUsuario = 0; 
     protected int idUsuario;
     protected String nombreUsuario;

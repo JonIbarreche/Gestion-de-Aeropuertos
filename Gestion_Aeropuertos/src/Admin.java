@@ -36,18 +36,21 @@ public class Admin extends Usuario {
             return false;
         }
         Admin admin = (Admin) o;
-        return nivel == admin.nivel;
+        return idUsuario == admin.idUsuario && Objects.equals(nombreUsuario, admin.nombreUsuario) && Objects.equals(passwordUsuario, admin.passwordUsuario) && nivel == admin.nivel;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(nivel);
+        return Objects.hash(idUsuario, nombreUsuario, passwordUsuario, nivel);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " nivel='" + getNivel() + "'" +
+            "idUsuario='" + getIdUsuario() + "'" +
+            ", nombreUsuario='" + getNombreUsuario() + "'" +
+            ", passwordUsuario='" + getPasswordUsuario() + "'" +
+            ", nivel='" + getNivel() + "'" +
             "}";
     }
 }
