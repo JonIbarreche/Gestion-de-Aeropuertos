@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Vuelo extends Aeropuerto{
+public class Vuelo{
     
     public int contadorVuelo = 0;
     protected int idVuelo;
