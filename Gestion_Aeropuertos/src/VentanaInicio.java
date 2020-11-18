@@ -42,7 +42,6 @@ public class VentanaInicio extends JFrame {
         panelInicio = new JPanel();
         panelInicio.setLayout(null);
         panelInicio.setVisible(true);
-        panelInicio.setBackground(new Color(0, 128, 128));
         setContentPane(panelInicio);
     
 
@@ -129,11 +128,9 @@ public class VentanaInicio extends JFrame {
         textThread.start();
         
         botonBuscar.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 textThread.interrupt();
             }
-
         });
 
         textOrigen2.setVisible(false);
