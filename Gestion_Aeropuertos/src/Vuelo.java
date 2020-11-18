@@ -9,8 +9,9 @@ public class Vuelo{
     protected Aeropuerto aeropuertoDestino;
     protected String hora_o;
     protected String hora_d;
+    protected int precioVuelo;
 
-    public Vuelo(int idVuelo, String companyia, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, String hora_o, String hora_d) {
+    public Vuelo(int idVuelo, String companyia, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, String hora_o, String hora_d, int precioVuelo) {
         this.contadorVuelo++;
         this.idVuelo = contadorVuelo;
         this.companyia = companyia;
@@ -18,6 +19,7 @@ public class Vuelo{
         this.aeropuertoDestino = aeropuertoDestino;
         this.hora_o = hora_o;
         this.hora_d = hora_d;
+        this.precioVuelo = precioVuelo;
     }
 
     public Vuelo() {
@@ -28,6 +30,7 @@ public class Vuelo{
         this.aeropuertoDestino = null;
         this.hora_o = "";
         this.hora_d = "";
+        this.precioVuelo = 0;
     }
 
     public int getIdVuelo() {
@@ -74,6 +77,14 @@ public class Vuelo{
         this.hora_d = hora_d;
     }
 
+    public int getPrecioVuelo() {
+        return this.precioVuelo;
+    }
+
+    public void setPrecioVuelo(int precioVuelo) {
+        this.precioVuelo = precioVuelo;
+    }
+
     public Vuelo contadorVuelo(int contadorVuelo) {
         this.contadorVuelo = contadorVuelo;
         return this;
@@ -109,6 +120,11 @@ public class Vuelo{
         return this;
     }
 
+    public Vuelo precioVuelo(int precioVuelo) {
+        this.precioVuelo = precioVuelo;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -117,12 +133,12 @@ public class Vuelo{
             return false;
         }
         Vuelo vuelo = (Vuelo) o;
-        return contadorVuelo == vuelo.contadorVuelo && idVuelo == vuelo.idVuelo && Objects.equals(companyia, vuelo.companyia) && Objects.equals(aeropuertOrigen, vuelo.aeropuertOrigen) && Objects.equals(aeropuertoDestino, vuelo.aeropuertoDestino) && Objects.equals(hora_o, vuelo.hora_o) && Objects.equals(hora_d, vuelo.hora_d);
+        return contadorVuelo == vuelo.contadorVuelo && idVuelo == vuelo.idVuelo && Objects.equals(companyia, vuelo.companyia) && Objects.equals(aeropuertOrigen, vuelo.aeropuertOrigen) && Objects.equals(aeropuertoDestino, vuelo.aeropuertoDestino) && Objects.equals(hora_o, vuelo.hora_o) && Objects.equals(hora_d, vuelo.hora_d) && precioVuelo == vuelo.precioVuelo;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contadorVuelo, idVuelo, companyia, aeropuertOrigen, aeropuertoDestino, hora_o, hora_d);
+        return Objects.hash(contadorVuelo, idVuelo, companyia, aeropuertOrigen, aeropuertoDestino, hora_o, hora_d, precioVuelo);
     }
 
     @Override
@@ -134,6 +150,7 @@ public class Vuelo{
             ", aeropuertoDestino='" + getAeropuertoDestino() + "'" +
             ", hora_o='" + getHora_o() + "'" +
             ", hora_d='" + getHora_d() + "'" +
+            ", precioVuelo='" + getPrecioVuelo() + "'" +
             "}";
     }
 }
