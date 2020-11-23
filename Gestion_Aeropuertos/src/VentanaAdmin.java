@@ -8,26 +8,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
+import javax.swing.text.AttributeSet.ColorAttribute;
 
 public class VentanaAdmin extends JFrame {
     
     private JPanel panelPrincipal;
     private JPanel panelAdmin;
     private JPanel panelEditar;
-
-    //PanelAdmin
-    private JPanel panelTabla;
-    private JPanel panelMapa;
-    
-    private JButton botonEditar;
-    private JButton botonBorrar;
-    
     private Dimension frameSize;
     private Dimension sizeBotones;
     private Insets insets;
-
+    private Insets insetsAdmin;
     private boolean hilo;
+    
+    //PanelAdmin
+    private JPanel panelTabla;
+    private JPanel panelMapa;   
+    private JButton botonEditar;
+    private JButton botonBorrar;
 
     //PanelEditar
     private JPanel panelEditarIzq;
@@ -42,61 +40,62 @@ public class VentanaAdmin extends JFrame {
 
     public VentanaAdmin(){
         
+        Container cp = getContentPane();
         setTitle("PanelAdmin");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameSize = new Dimension ( 950, 650 );
-        setPreferredSize( new Dimension(frameSize.width, frameSize.height));
+        setSize( new Dimension(frameSize.width, frameSize.height));
         setResizable(false);
-        pack();
+        
+        cp.setLayout(null);
 
-        panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(null);
-        panelPrincipal.setVisible(true);
-      
-        //PanelAdmin
+        insets = cp.getInsets();
+        
         panelAdmin = new JPanel();
         panelAdmin.setLayout(null);
         panelAdmin.setVisible(true);
-    
+        panelAdmin.setBounds(0 + insets.left, 0 +insets.top, frameSize.width, frameSize.height);
+        insetsAdmin = panelAdmin.getInsets();
+
+        panelEditar = new JPanel();
+        panelEditar.setLayout(new BorderLayout());
+        panelEditar.setVisible(false);
+        panelEditar.setBounds(0 + insets.left, 0 +insets.top, frameSize.width, frameSize.height - 40);
+          
+        // //PanelAdmin
         panelMapa = new JPanel();
         panelMapa.setLayout(null);
+        panelMapa.setBackground(Color.RED);
         
         botonBorrar =  new JButton("Borrar");
         botonEditar = new JButton("Editar");
     
-        insets = panelPrincipal.getInsets();
-        
-        botonEditar.setBounds(700 + insets.left, 525 +insets.top, 80, 40);
-        botonBorrar.setBounds(550 + insets.left, 525 +insets.top, 80, 40);
-        panelMapa.setBounds(450 + insets.left, 40 + insets.top, 450, 450);
+        botonEditar.setBounds(700 + insetsAdmin.left, 525 +insetsAdmin.top, 80, 40);
+        botonBorrar.setBounds(550 + insetsAdmin.left, 525 +insetsAdmin.top, 80, 40);
+        panelMapa.setBounds(450 + insetsAdmin.left, 40 + insetsAdmin.top, 450, 450);
         panelMapa.setBackground(Color.CYAN);
         
         panelAdmin.add(botonEditar);
         panelAdmin.add(botonBorrar);
-        //panelAdmin.add(panelTabla);
         panelAdmin.add(panelMapa);
+        //panelAdmin.add(panelTabla);
+        
         
         botonBorrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
-                panelEditar.setVisible(true);
                 panelAdmin.setVisible(false);
+                panelEditar.setVisible(true);
+                
             }
         });
-
+        cp.add(panelAdmin);
         //PanelEditar
-        panelEditar = new JPanel();
-        panelEditar.setLayout(new BorderLayout());
-        panelEditar.setVisible(false);
         
         panelEditarIzq = new JPanel(new GridLayout(5,2));
         panelEditarIzq.setVisible(true);
 
         panelEditarAbajo = new JPanel(new GridLayout(2,1));
         panelEditarAbajo.setVisible(true);
-
-        panelEditar.add(panelEditarIzq, BorderLayout.WEST);
-        panelEditar.add(panelEditarAbajo, BorderLayout.SOUTH);
 
         textOrigen = new JTextField(20);
         JLabel labelOrigen = new JLabel("Origen: ");
@@ -125,10 +124,12 @@ public class VentanaAdmin extends JFrame {
         panelEditarAbajo.add(botonPasajeros);
         panelEditarAbajo.add(botonGuardar);
         
-        panelPrincipal.add(panelAdmin);
-        panelPrincipal.add(panelEditar);
-        setContentPane(panelPrincipal);
-        //
+        panelEditar.add(panelEditarIzq, BorderLayout.WEST);
+        panelEditar.add(panelEditarAbajo, BorderLayout.SOUTH);
+
+         cp.add(panelEditar);
+        
+
         
     }
 }
