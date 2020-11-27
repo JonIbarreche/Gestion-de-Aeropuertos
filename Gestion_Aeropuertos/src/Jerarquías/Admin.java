@@ -1,3 +1,5 @@
+package Jerarquías;
+
 import java.util.Objects;
 
 public class Admin extends Usuario {
