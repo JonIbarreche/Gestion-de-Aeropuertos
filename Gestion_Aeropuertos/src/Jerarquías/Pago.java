@@ -1,3 +1,5 @@
+package Jerarquías;
+
 public class Pago {
     private int tarjeta;
     private int anyo;

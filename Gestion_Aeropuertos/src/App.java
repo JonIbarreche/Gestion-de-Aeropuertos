@@ -7,9 +7,11 @@ public class App {
 			public void run() {
 				try {
 				VentanaLogin frameLogin = new VentanaLogin();
-				frameLogin.setVisible(true);
+				frameLogin.setVisible(false);
 				VentanaInicio frameInicio = new VentanaInicio();
-				frameInicio.setVisible(true);
+				frameInicio.setVisible(false);
+				VentanaAdmin frameAdmin = new VentanaAdmin();
+				frameAdmin.setVisible(true);
 					//locations Locations = new ocations();
 				} catch (Exception e) {
 					e.printStackTrace();
