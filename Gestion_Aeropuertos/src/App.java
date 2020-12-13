@@ -14,7 +14,7 @@ public class App {
 				VentanaLogin frameLogin = new VentanaLogin();
 				frameLogin.setVisible(false);
 				VentanaInicio frameInicio = new VentanaInicio();
-				frameInicio.setVisible(false);
+				frameInicio.setVisible(true);
 				VentanaAdmin frameAdmin = new VentanaAdmin();
 				frameAdmin.setVisible(true);
 					//locations Locations = new ocations();
