@@ -12,7 +12,7 @@ public class App {
 			public void run() {
 				try {
 				VentanaLogin frameLogin = new VentanaLogin();
-				frameLogin.setVisible(false);
+				frameLogin.setVisible(true);
 				VentanaInicio frameInicio = new VentanaInicio();
 				frameInicio.setVisible(true);
 				VentanaAdmin frameAdmin = new VentanaAdmin();
