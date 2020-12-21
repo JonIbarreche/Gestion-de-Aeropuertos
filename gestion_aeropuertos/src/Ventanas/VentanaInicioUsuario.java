@@ -1,3 +1,4 @@
+/*
 package Ventanas;
 
 import java.awt.BorderLayout;
@@ -224,3 +225,4 @@ public class VentanaInicioUsuario extends JFrame {
 		
 	}
 }
+*/
