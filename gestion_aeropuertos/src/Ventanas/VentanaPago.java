@@ -1,4 +1,4 @@
-/*
+
 package Ventanas;
 
 import java.awt.BorderLayout;
@@ -107,4 +107,3 @@ public class VentanaPago extends JFrame {
 	}
 
 }
-*/

@@ -1,4 +1,4 @@
-/*
+
 package Ventanas;
 
 import java.awt.BorderLayout;
@@ -172,4 +172,3 @@ public class VentanaBusqueda extends JFrame {
 		setLocationRelativeTo(null);
 	}
 }
-*/
