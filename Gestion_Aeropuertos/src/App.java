@@ -17,6 +17,13 @@ public class App {
 				frameInicio.setVisible(true);
 				VentanaAdmin frameAdmin = new VentanaAdmin();
 				frameAdmin.setVisible(true);
+				VentanaInicioUsuario frameInicioUsuario = new VentanaInicioUsuario();
+				frameInicioUsuario.setVisible(true);
+				VentanaBusqueda frameBusqueda = new VentanaBusqueda();
+				frameBusqueda.setVisible(true);
+				VentanaPago framePago = new VentanaPago();
+				framePago.setVisible(true);
+
 					//locations Locations = new ocations();
 				} catch (Exception e) {
 					e.printStackTrace();
