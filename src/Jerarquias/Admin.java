@@ -1,4 +1,4 @@
-package Jerarquías;
+package Jerarquias;
 
 import java.util.Objects;
 
@@ -6,8 +6,8 @@ public class Admin extends Usuario {
     
     protected int nivel;
 
-    public Admin(int idUsuario, String nombreUsuario, String passwordUsuario,int nivel) {
-        super(idUsuario, nombreUsuario, passwordUsuario);
+    public Admin(int id, String username, String password,int nivel) {
+        super(id, username, password);
         this.nivel = nivel;
     }
 
@@ -38,20 +38,20 @@ public class Admin extends Usuario {
             return false;
         }
         Admin admin = (Admin) o;
-        return idUsuario == admin.idUsuario && Objects.equals(nombreUsuario, admin.nombreUsuario) && Objects.equals(passwordUsuario, admin.passwordUsuario) && nivel == admin.nivel;
+        return id == admin.id && Objects.equals(username, admin.username) && Objects.equals(password, admin.password) && nivel == admin.nivel;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUsuario, nombreUsuario, passwordUsuario, nivel);
+        return Objects.hash(id, username, password, nivel);
     }
 
     @Override
     public String toString() {
         return "{" +
-            "idUsuario='" + getIdUsuario() + "'" +
-            ", nombreUsuario='" + getNombreUsuario() + "'" +
-            ", passwordUsuario='" + getPasswordUsuario() + "'" +
+            "id='" + getId() + "'" +
+            ", username='" + getUsername() + "'" +
+            ", password='" + getPassword() + "'" +
             ", nivel='" + getNivel() + "'" +
             "}";
     }

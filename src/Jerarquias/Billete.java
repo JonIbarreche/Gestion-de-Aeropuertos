@@ -10,7 +10,7 @@ public class Billete {
     private int ninyo;
     private int maletas;
     private String clase;
-    private int precioBillete;
+    private int precio;
 
 
     public Billete() {
@@ -20,17 +20,17 @@ public class Billete {
         this.ninyo = 0;
         this.maletas = 0;
         this.clase = "turista";
-        this.precioBillete = 0;
+        this.precio = 0;
     }
 
-    public Billete(Cliente cliente, Vuelo vuelo, int adulto, int ninyo, int maletas, String clase, int precioBillete) {
+    public Billete(Cliente cliente, Vuelo vuelo, int adulto, int ninyo, int maletas, String clase, int precio) {
         this.cliente = cliente;
         this.vuelo = vuelo;
         this.adulto = adulto;
         this.ninyo = ninyo;
         this.maletas = maletas;
         this.clase = clase;
-        this.precioBillete = precioBillete;
+        this.precio = precio;
     }
 
     public Cliente getCliente() {
@@ -81,12 +81,12 @@ public class Billete {
         this.clase = clase;
     }
 
-    public int getPrecioBillete() {
-        return this.precioBillete;
+    public int getPrecio() {
+        return this.precio;
     }
 
-    public void setPrecioBillete(int precioBillete) {
-        this.precioBillete = precioBillete;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     public Billete cliente(Cliente cliente) {
@@ -119,8 +119,8 @@ public class Billete {
         return this;
     }
 
-    public Billete precioBillete(int precioBillete) {
-        this.precioBillete = precioBillete;
+    public Billete precio(int precio) {
+        this.precio = precio;
         return this;
     }
 
@@ -132,12 +132,12 @@ public class Billete {
             return false;
         }
         Billete billete = (Billete) o;
-        return Objects.equals(cliente, billete.cliente) && Objects.equals(vuelo, billete.vuelo) && adulto == billete.adulto && ninyo == billete.ninyo && maletas == billete.maletas && Objects.equals(clase, billete.clase) && precioBillete == billete.precioBillete;
+        return Objects.equals(cliente, billete.cliente) && Objects.equals(vuelo, billete.vuelo) && adulto == billete.adulto && ninyo == billete.ninyo && maletas == billete.maletas && Objects.equals(clase, billete.clase) && precio == billete.precio;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cliente, vuelo, adulto, ninyo, maletas, clase, precioBillete);
+        return Objects.hash(cliente, vuelo, adulto, ninyo, maletas, clase, precio);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class Billete {
             ", ninyo='" + getNinyo() + "'" +
             ", maletas='" + getMaletas() + "'" +
             ", clase='" + getClase() + "'" +
-            ", precioBillete='" + getPrecioBillete() + "'" +
+            ", precio='" + getPrecio() + "'" +
             "}";
     }
     

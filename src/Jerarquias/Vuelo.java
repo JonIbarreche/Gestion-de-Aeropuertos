@@ -5,38 +5,38 @@ import java.util.Objects;
 public class Vuelo{
     
     public int contadorVuelo = 0;
-    protected int idVuelo;
+    protected int id;
     protected String companyia;
     protected Aeropuerto aeropuertOrigen;
     protected Aeropuerto aeropuertoDestino;
     protected String hora_o;
     protected String hora_d;
-    protected int precioVuelo;
+    protected int precio;
 
-    public Vuelo(int idVuelo, String companyia, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, String hora_o, String hora_d, int precioVuelo) {
+    public Vuelo(int id, String companyia, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, String hora_o, String hora_d, int precio) {
         this.contadorVuelo++;
-        this.idVuelo = contadorVuelo;
+        this.id = contadorVuelo;
         this.companyia = companyia;
         this.aeropuertOrigen = aeropuertOrigen;
         this.aeropuertoDestino = aeropuertoDestino;
         this.hora_o = hora_o;
         this.hora_d = hora_d;
-        this.precioVuelo = precioVuelo;
+        this.precio = precio;
     }
 
     public Vuelo() {
         this.contadorVuelo++;
-        this.idVuelo = contadorVuelo;
+        this.id = contadorVuelo;
         this.companyia = "";
         this.aeropuertOrigen = null;
         this.aeropuertoDestino = null;
         this.hora_o = "";
         this.hora_d = "";
-        this.precioVuelo = 0;
+        this.precio = 0;
     }
 
-    public int getIdVuelo() {
-        return this.idVuelo;
+    public int getId() {
+        return this.id;
     }
 
     public String getCompanyia() {
@@ -79,12 +79,12 @@ public class Vuelo{
         this.hora_d = hora_d;
     }
 
-    public int getPrecioVuelo() {
-        return this.precioVuelo;
+    public int getPrecio() {
+        return this.precio;
     }
 
-    public void setPrecioVuelo(int precioVuelo) {
-        this.precioVuelo = precioVuelo;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     public Vuelo contadorVuelo(int contadorVuelo) {
@@ -92,8 +92,8 @@ public class Vuelo{
         return this;
     }
 
-    public Vuelo idVuelo(int idVuelo) {
-        this.idVuelo = idVuelo;
+    public Vuelo id(int id) {
+        this.id = id;
         return this;
     }
 
@@ -122,8 +122,8 @@ public class Vuelo{
         return this;
     }
 
-    public Vuelo precioVuelo(int precioVuelo) {
-        this.precioVuelo = precioVuelo;
+    public Vuelo precio(int precio) {
+        this.precio = precio;
         return this;
     }
 
@@ -135,24 +135,24 @@ public class Vuelo{
             return false;
         }
         Vuelo vuelo = (Vuelo) o;
-        return contadorVuelo == vuelo.contadorVuelo && idVuelo == vuelo.idVuelo && Objects.equals(companyia, vuelo.companyia) && Objects.equals(aeropuertOrigen, vuelo.aeropuertOrigen) && Objects.equals(aeropuertoDestino, vuelo.aeropuertoDestino) && Objects.equals(hora_o, vuelo.hora_o) && Objects.equals(hora_d, vuelo.hora_d) && precioVuelo == vuelo.precioVuelo;
+        return contadorVuelo == vuelo.contadorVuelo && id == vuelo.id && Objects.equals(companyia, vuelo.companyia) && Objects.equals(aeropuertOrigen, vuelo.aeropuertOrigen) && Objects.equals(aeropuertoDestino, vuelo.aeropuertoDestino) && Objects.equals(hora_o, vuelo.hora_o) && Objects.equals(hora_d, vuelo.hora_d) && precio == vuelo.precio;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contadorVuelo, idVuelo, companyia, aeropuertOrigen, aeropuertoDestino, hora_o, hora_d, precioVuelo);
+        return Objects.hash(contadorVuelo, id, companyia, aeropuertOrigen, aeropuertoDestino, hora_o, hora_d, precio);
     }
 
     @Override
     public String toString() {
         return "{" +
-            "idVuelo='" + getIdVuelo() + "'" +
+            "id='" + getId() + "'" +
             ", companyia='" + getCompanyia() + "'" +
             ", aeropuertOrigen='" + getAeropuertOrigen() + "'" +
             ", aeropuertoDestino='" + getAeropuertoDestino() + "'" +
             ", hora_o='" + getHora_o() + "'" +
             ", hora_d='" + getHora_d() + "'" +
-            ", precioVuelo='" + getPrecioVuelo() + "'" +
+            ", precio='" + getPrecio() + "'" +
             "}";
     }
 }
