@@ -9,4 +9,5 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="lib" path="lib/jcalendar-1.4.jar" />
+	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.27.2.1.jar" />
 </classpath>
