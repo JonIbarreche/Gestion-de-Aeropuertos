@@ -1,19 +1,11 @@
 
 package Ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.JInternalFrame;
-import javax.swing.JToolBar;
-import javax.swing.JDesktopPane;
 import javax.swing.JTextField;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -22,12 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JCalendar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

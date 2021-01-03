@@ -1,22 +1,13 @@
 
 package Ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
-import com.toedter.components.JLocaleChooser;
-import java.awt.Component;
-import com.toedter.calendar.JDateChooser;
-import com.toedter.components.JSpinField;
-import java.awt.ScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import java.awt.Font;

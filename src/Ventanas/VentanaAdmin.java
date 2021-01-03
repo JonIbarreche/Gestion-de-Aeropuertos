@@ -130,8 +130,5 @@ public class VentanaAdmin extends JFrame {
         panelEditar.add(panelEditarAbajo, BorderLayout.SOUTH);
 
          cp.add(panelEditar);
-        
-
-        
     }
 }
