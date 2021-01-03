@@ -13,7 +13,7 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BD bd = new BD("main.db");
+					BDAPI bd = new BDAPI("main.db");
 					System.out.println(bd);
 					VentanaLogin frameLogin = new VentanaLogin();
 					frameLogin.setVisible(true);
@@ -27,6 +27,7 @@ public class App {
 					frameBusqueda.setVisible(true);
 					VentanaPago framePago = new VentanaPago();
 					framePago.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
