@@ -9,25 +9,26 @@ public class Pasajero extends Usuario {
     protected String email;
     protected String telefono;
     protected Pago tarjeta;
+    protected Billete[] bookings;
 
-
-   
-    public Pasajero(int id, String username, String password, String nombre, String apellido, String email, String telefono, Pago tarjeta) {
-        super(id, username, password);
+    public Pasajero(String nombre, String apellido, String email, String telefono, Pago tarjeta, Billete[] bookings) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.telefono = telefono;
         this.tarjeta = tarjeta;
+        this.bookings = bookings;
     }
+
     public Pasajero() {
         this.nombre = "";
         this.apellido = "";
         this.email = "";
         this.telefono = "";
         this.tarjeta = null;
+        this.bookings = null;
     }
-
+    
     public String getNombre() {
         return this.nombre;
     }
@@ -68,6 +69,14 @@ public class Pasajero extends Usuario {
         this.tarjeta = tarjeta;
     }
 
+    public Billete[] getBookings() {
+        return this.bookings;
+    }
+
+    public void setBookings(Billete[] bookings) {
+        this.bookings = bookings;
+    }
+
     public Pasajero nombre(String nombre) {
         this.nombre = nombre;
         return this;
@@ -93,6 +102,11 @@ public class Pasajero extends Usuario {
         return this;
     }
 
+    public Pasajero bookings(Billete[] bookings) {
+        this.bookings = bookings;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -100,28 +114,24 @@ public class Pasajero extends Usuario {
         if (!(o instanceof Pasajero)) {
             return false;
         }
-        Pasajero Pasajero = (Pasajero) o;
-        return id == Pasajero.id && Objects.equals(username, Pasajero.username) && Objects.equals(password, Pasajero.password) && Objects.equals(apellido, Pasajero.apellido) && Objects.equals(email, Pasajero.email) && Objects.equals(telefono, Pasajero.telefono) && Objects.equals(tarjeta, Pasajero.tarjeta);
+        Pasajero pasajero = (Pasajero) o;
+        return Objects.equals(nombre, pasajero.nombre) && Objects.equals(apellido, pasajero.apellido) && Objects.equals(email, pasajero.email) && Objects.equals(telefono, pasajero.telefono) && Objects.equals(tarjeta, pasajero.tarjeta) && Objects.equals(bookings, pasajero.bookings);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, nombre, apellido, email, telefono, tarjeta);
+        return Objects.hash(nombre, apellido, email, telefono, tarjeta, bookings);
     }
 
     @Override
     public String toString() {
         return "{" +
-            "id='" + getId() + "'" +
-            ", username='" + getUsername() + "'" +
-            ", password='" + getPassword() + "'" +
-            ", nombre='" + getNombre() + "'" +
+            " nombre='" + getNombre() + "'" +
             ", apellido='" + getApellido() + "'" +
             ", email='" + getEmail() + "'" +
             ", telefono='" + getTelefono() + "'" +
             ", tarjeta='" + getTarjeta() + "'" +
+            ", bookings='" + getBookings() + "'" +
             "}";
-    }
-
-
+    }    
 }
