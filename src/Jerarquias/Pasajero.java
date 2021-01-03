@@ -1,4 +1,4 @@
-package Jerarquías;
+package Jerarquias;
 
 import java.util.Objects;
 

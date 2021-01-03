@@ -1,10 +1,10 @@
-package Jerarquías;
+package Jerarquias;
 
 import java.util.Objects;
 
 public class Billete {
 
-    private Cliente cliente;
+    private Pasajero pasajero;
     private Vuelo vuelo;
     private int adulto;
     private int ninyo;
@@ -14,7 +14,7 @@ public class Billete {
 
 
     public Billete() {
-        this.cliente = null;
+        this.pasajero = null;
         this.vuelo = null;
         this.adulto = 0;
         this.ninyo = 0;
@@ -23,8 +23,8 @@ public class Billete {
         this.precio = 0;
     }
 
-    public Billete(Cliente cliente, Vuelo vuelo, int adulto, int ninyo, int maletas, String clase, int precio) {
-        this.cliente = cliente;
+    public Billete(Pasajero pasajero, Vuelo vuelo, int adulto, int ninyo, int maletas, String clase, int precio) {
+        this.pasajero = pasajero;
         this.vuelo = vuelo;
         this.adulto = adulto;
         this.ninyo = ninyo;
@@ -33,12 +33,12 @@ public class Billete {
         this.precio = precio;
     }
 
-    public Cliente getCliente() {
-        return this.cliente;
+    public Pasajero getPasajero() {
+        return this.pasajero;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setPasajero(Pasajero pasajero) {
+        this.pasajero = pasajero;
     }
 
     public Vuelo getVuelo() {
@@ -89,8 +89,8 @@ public class Billete {
         this.precio = precio;
     }
 
-    public Billete cliente(Cliente cliente) {
-        this.cliente = cliente;
+    public Billete pasajero(Pasajero pasajero) {
+        this.pasajero = pasajero;
         return this;
     }
 
@@ -132,18 +132,18 @@ public class Billete {
             return false;
         }
         Billete billete = (Billete) o;
-        return Objects.equals(cliente, billete.cliente) && Objects.equals(vuelo, billete.vuelo) && adulto == billete.adulto && ninyo == billete.ninyo && maletas == billete.maletas && Objects.equals(clase, billete.clase) && precio == billete.precio;
+        return Objects.equals(pasajero, billete.pasajero) && Objects.equals(vuelo, billete.vuelo) && adulto == billete.adulto && ninyo == billete.ninyo && maletas == billete.maletas && Objects.equals(clase, billete.clase) && precio == billete.precio;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cliente, vuelo, adulto, ninyo, maletas, clase, precio);
+        return Objects.hash(pasajero, vuelo, adulto, ninyo, maletas, clase, precio);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " cliente='" + getCliente() + "'" +
+            " pasajero='" + getPasajero() + "'" +
             ", vuelo='" + getVuelo() + "'" +
             ", adulto='" + getAdulto() + "'" +
             ", ninyo='" + getNinyo() + "'" +

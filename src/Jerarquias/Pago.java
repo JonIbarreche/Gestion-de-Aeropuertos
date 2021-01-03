@@ -1,4 +1,4 @@
-package Jerarquías;
+package Jerarquias;
 
 public class Pago {
     private int tarjeta;
