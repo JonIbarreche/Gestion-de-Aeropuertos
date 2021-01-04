@@ -11,7 +11,7 @@ public class Aeropuerto {
     protected String ciudad;
     protected String pais;
 
-    public Aeropuerto(int id, String nombre, String IATA, String ciudad, String pais) {
+    public Aeropuerto(String nombre, String IATA, String ciudad, String pais) {
         contadorAeropuerto++;
         this.id = contadorAeropuerto;
         this.nombre = nombre;

@@ -1,6 +1,7 @@
 // import javax.swing.SwingUtilities;
 import java.awt.EventQueue;
 
+import Jerarquias.Aeropuerto;
 import Ventanas.VentanaAdmin;
 import Ventanas.VentanaBusqueda;
 import Ventanas.VentanaInicioUsuario;
@@ -13,7 +14,9 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BDAPI bd = new BDAPI("main.db");
+					BDAPI bd = new BDAPI();
+					Aeropuerto aeropuerto1 = new Aeropuerto("Barajas", "MAD", "Madrid", "España");
+					bd.editarAeropuerto(aeropuerto1);
 					System.out.println(bd);
 					VentanaLogin frameLogin = new VentanaLogin();
 					frameLogin.setVisible(true);

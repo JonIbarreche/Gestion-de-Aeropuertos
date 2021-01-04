@@ -9,8 +9,8 @@ public abstract class Usuario {
     protected String password;
 
 
-    public Usuario(int id, String username, String password) {
-        this.id = id;
+    public Usuario(String username, String password) {
+        this.id = contadorUsuario;
         this.username = username;
         this.password = password;
     }
