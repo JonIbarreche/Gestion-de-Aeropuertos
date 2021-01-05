@@ -4,122 +4,121 @@ import java.util.Objects;
 
 public class Billete {
 
-    private Pasajero pasajero;
-    private Vuelo vuelo;
-    private int adulto;
-    private int ninyo;
-    private int maletas;
-    private String clase;
-    private int precio;
+    private int id;
+    private Vuelo[] vuelos;
+    private int numPasajerosAdultos;
+    private int numPasajerosNinyios;
+    private int numMaletas;
+    private int clase;
+    private float precio;
 
+    public Billete(Vuelo[] vuelos, int numPasajerosAdultos, int numPasajerosNinyios, int numMaletas, int clase,
+            float precio) {
 
+        this.vuelos = vuelos;
+        this.numPasajerosAdultos = numPasajerosAdultos;
+        this.numPasajerosNinyios = numPasajerosNinyios;
+        this.numMaletas = numMaletas;
+        this.clase = clase;
+        this.precio = precio;
+    }
+    
     public Billete() {
-        this.pasajero = null;
-        this.vuelo = null;
-        this.adulto = 0;
-        this.ninyo = 0;
-        this.maletas = 0;
-        this.clase = "turista";
+        this.vuelos = null;
+        this.numPasajerosAdultos = 0;
+        this.numPasajerosNinyios = 0;
+        this.numMaletas = 0;
+        this.clase = 0;
         this.precio = 0;
     }
 
-    public Billete(Pasajero pasajero, Vuelo vuelo, int adulto, int ninyo, int maletas, String clase, int precio) {
-        this.pasajero = pasajero;
-        this.vuelo = vuelo;
-        this.adulto = adulto;
-        this.ninyo = ninyo;
-        this.maletas = maletas;
-        this.clase = clase;
-        this.precio = precio;
+    public int getId() {
+        return this.id;
     }
 
-    public Pasajero getPasajero() {
-        return this.pasajero;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setPasajero(Pasajero pasajero) {
-        this.pasajero = pasajero;
+    public Vuelo[] getVuelos() {
+        return this.vuelos;
     }
 
-    public Vuelo getVuelo() {
-        return this.vuelo;
+    public void setVuelos(Vuelo[] vuelos) {
+        this.vuelos = vuelos;
     }
 
-    public void setVuelo(Vuelo vuelo) {
-        this.vuelo = vuelo;
+    public int getNumPasajerosAdultos() {
+        return this.numPasajerosAdultos;
     }
 
-    public int getAdulto() {
-        return this.adulto;
+    public void setNumPasajerosAdultos(int numPasajerosAdultos) {
+        this.numPasajerosAdultos = numPasajerosAdultos;
     }
 
-    public void setAdulto(int adulto) {
-        this.adulto = adulto;
+    public int getNumPasajerosNinyios() {
+        return this.numPasajerosNinyios;
     }
 
-    public int getNinyo() {
-        return this.ninyo;
+    public void setNumPasajerosNinyios(int numPasajerosNinyios) {
+        this.numPasajerosNinyios = numPasajerosNinyios;
     }
 
-    public void setNinyo(int ninyo) {
-        this.ninyo = ninyo;
+    public int getNumMaletas() {
+        return this.numMaletas;
     }
 
-    public int getMaletas() {
-        return this.maletas;
+    public void setNumMaletas(int numMaletas) {
+        this.numMaletas = numMaletas;
     }
 
-    public void setMaletas(int maletas) {
-        this.maletas = maletas;
-    }
-
-    public String getClase() {
+    public int getClase() {
         return this.clase;
     }
 
-    public void setClase(String clase) {
+    public void setClase(int clase) {
         this.clase = clase;
     }
 
-    public int getPrecio() {
+    public float getPrecio() {
         return this.precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
 
-    public Billete pasajero(Pasajero pasajero) {
-        this.pasajero = pasajero;
+    public Billete id(int id) {
+        this.id = id;
         return this;
     }
 
-    public Billete vuelo(Vuelo vuelo) {
-        this.vuelo = vuelo;
+    public Billete vuelos(Vuelo[] vuelos) {
+        this.vuelos = vuelos;
         return this;
     }
 
-    public Billete adulto(int adulto) {
-        this.adulto = adulto;
+    public Billete numPasajerosAdultos(int numPasajerosAdultos) {
+        this.numPasajerosAdultos = numPasajerosAdultos;
         return this;
     }
 
-    public Billete ninyo(int ninyo) {
-        this.ninyo = ninyo;
+    public Billete numPasajerosNinyios(int numPasajerosNinyios) {
+        this.numPasajerosNinyios = numPasajerosNinyios;
         return this;
     }
 
-    public Billete maletas(int maletas) {
-        this.maletas = maletas;
+    public Billete numMaletas(int numMaletas) {
+        this.numMaletas = numMaletas;
         return this;
     }
 
-    public Billete clase(String clase) {
+    public Billete clase(int clase) {
         this.clase = clase;
         return this;
     }
 
-    public Billete precio(int precio) {
+    public Billete precio(float precio) {
         this.precio = precio;
         return this;
     }
@@ -132,26 +131,27 @@ public class Billete {
             return false;
         }
         Billete billete = (Billete) o;
-        return Objects.equals(pasajero, billete.pasajero) && Objects.equals(vuelo, billete.vuelo) && adulto == billete.adulto && ninyo == billete.ninyo && maletas == billete.maletas && Objects.equals(clase, billete.clase) && precio == billete.precio;
+        return id == billete.id && Objects.equals(vuelos, billete.vuelos) && numPasajerosAdultos == billete.numPasajerosAdultos && numPasajerosNinyios == billete.numPasajerosNinyios && numMaletas == billete.numMaletas && clase == billete.clase && precio == billete.precio;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pasajero, vuelo, adulto, ninyo, maletas, clase, precio);
+        return Objects.hash(id, vuelos, numPasajerosAdultos, numPasajerosNinyios, numMaletas, clase, precio);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " pasajero='" + getPasajero() + "'" +
-            ", vuelo='" + getVuelo() + "'" +
-            ", adulto='" + getAdulto() + "'" +
-            ", ninyo='" + getNinyo() + "'" +
-            ", maletas='" + getMaletas() + "'" +
+            " id='" + getId() + "'" +
+            ", vuelos='" + getVuelos() + "'" +
+            ", numPasajerosAdultos='" + getNumPasajerosAdultos() + "'" +
+            ", numPasajerosNinyios='" + getNumPasajerosNinyios() + "'" +
+            ", numMaletas='" + getNumMaletas() + "'" +
             ", clase='" + getClase() + "'" +
             ", precio='" + getPrecio() + "'" +
             "}";
     }
+
     
    
 }

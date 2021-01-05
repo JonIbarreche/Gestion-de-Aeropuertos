@@ -1,48 +1,53 @@
 package Jerarquias;
 
+import java.util.Calendar;
 import java.util.Objects;
-import java.time.ZonedDateTime;
 
 public class Vuelo{
     
-    public int contadorVuelo = 0;
     protected int id;
-    protected String companyia;
+    protected String aerolinea;
+    protected String designator;
     protected Aeropuerto aeropuertOrigen;
     protected Aeropuerto aeropuertoDestino;
-    protected ZonedDateTime fechaOrigen;
-    protected ZonedDateTime fechaDestino;
-    protected int precio;
+    protected float precioBaseAdulto;
+    protected float precioBaseNinyio;
+    protected float precioMaleta;
+    protected Calendar fechaOrigen;
+    protected Calendar fechaDestino;
+    protected int asientosClase1;
+    protected int asientosClase2;
+    protected int asientosClase3;
 
-    public Vuelo(String companyia, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino,
-            ZonedDateTime fechaOrigen, ZonedDateTime fechaDestino, int precio) {
-        this.contadorVuelo = contadorVuelo++;
-        this.id = contadorVuelo;
-        this.companyia = companyia;
-        this.aeropuertOrigen = aeropuertOrigen;
-        this.aeropuertoDestino = aeropuertoDestino;
-        this.fechaOrigen = fechaOrigen;
-        this.fechaDestino = fechaDestino;
-        this.precio = precio;
-    }
-    
+
     public Vuelo() {
-        this.contadorVuelo = contadorVuelo++;
-        this.id = contadorVuelo;
-        this.companyia = "";
+        this.aerolinea = "";
+        this.designator = "";
         this.aeropuertOrigen = null;
         this.aeropuertoDestino = null;
+        this.precioBaseAdulto = 0;
+        this.precioBaseNinyio = 0;
+        this.precioMaleta = 0;
         this.fechaOrigen = null;
         this.fechaDestino = null;
-        this.precio = 0;
+        this.asientosClase1 = 0;
+        this.asientosClase2 = 0;
+        this.asientosClase3 = 0;
     }
 
-    public int getContadorVuelo() {
-        return this.contadorVuelo;
-    }
-
-    public void setContadorVuelo(int contadorVuelo) {
-        this.contadorVuelo = contadorVuelo;
+    public Vuelo(String aerolinea, String designator, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, float precioBaseAdulto, float precioBaseNinyio, float precioMaleta, Calendar fechaOrigen, Calendar fechaDestino, int asientosClase1, int asientosClase2, int asientosClase3) {
+        this.aerolinea = aerolinea;
+        this.designator = designator;
+        this.aeropuertOrigen = aeropuertOrigen;
+        this.aeropuertoDestino = aeropuertoDestino;
+        this.precioBaseAdulto = precioBaseAdulto;
+        this.precioBaseNinyio = precioBaseNinyio;
+        this.precioMaleta = precioMaleta;
+        this.fechaOrigen = fechaOrigen;
+        this.fechaDestino = fechaDestino;
+        this.asientosClase1 = asientosClase1;
+        this.asientosClase2 = asientosClase2;
+        this.asientosClase3 = asientosClase3;
     }
 
     public int getId() {
@@ -53,12 +58,20 @@ public class Vuelo{
         this.id = id;
     }
 
-    public String getCompanyia() {
-        return this.companyia;
+    public String getAerolinea() {
+        return this.aerolinea;
     }
 
-    public void setCompanyia(String companyia) {
-        this.companyia = companyia;
+    public void setAerolinea(String aerolinea) {
+        this.aerolinea = aerolinea;
+    }
+
+    public String getDesignator() {
+        return this.designator;
+    }
+
+    public void setDesignator(String designator) {
+        this.designator = designator;
     }
 
     public Aeropuerto getAeropuertOrigen() {
@@ -77,33 +90,68 @@ public class Vuelo{
         this.aeropuertoDestino = aeropuertoDestino;
     }
 
-    public ZonedDateTime getFechaOrigen() {
+    public float getPrecioBaseAdulto() {
+        return this.precioBaseAdulto;
+    }
+
+    public void setPrecioBaseAdulto(float precioBaseAdulto) {
+        this.precioBaseAdulto = precioBaseAdulto;
+    }
+
+    public float getPrecioBaseNinyio() {
+        return this.precioBaseNinyio;
+    }
+
+    public void setPrecioBaseNinyio(float precioBaseNinyio) {
+        this.precioBaseNinyio = precioBaseNinyio;
+    }
+
+    public float getPrecioMaleta() {
+        return this.precioMaleta;
+    }
+
+    public void setPrecioMaleta(float precioMaleta) {
+        this.precioMaleta = precioMaleta;
+    }
+
+    public Calendar getFechaOrigen() {
         return this.fechaOrigen;
     }
 
-    public void setFechaOrigen(ZonedDateTime fechaOrigen) {
+    public void setFechaOrigen(Calendar fechaOrigen) {
         this.fechaOrigen = fechaOrigen;
     }
 
-    public ZonedDateTime getFechaDestino() {
+    public Calendar getFechaDestino() {
         return this.fechaDestino;
     }
 
-    public void setFechaDestino(ZonedDateTime fechaDestino) {
+    public void setFechaDestino(Calendar fechaDestino) {
         this.fechaDestino = fechaDestino;
     }
 
-    public int getPrecio() {
-        return this.precio;
+    public int getAsientosClase1() {
+        return this.asientosClase1;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public void setAsientosClase1(int asientosClase1) {
+        this.asientosClase1 = asientosClase1;
     }
 
-    public Vuelo contadorVuelo(int contadorVuelo) {
-        this.contadorVuelo = contadorVuelo;
-        return this;
+    public int getAsientosClase2() {
+        return this.asientosClase2;
+    }
+
+    public void setAsientosClase2(int asientosClase2) {
+        this.asientosClase2 = asientosClase2;
+    }
+
+    public int getAsientosClase3() {
+        return this.asientosClase3;
+    }
+
+    public void setAsientosClase3(int asientosClase3) {
+        this.asientosClase3 = asientosClase3;
     }
 
     public Vuelo id(int id) {
@@ -111,8 +159,13 @@ public class Vuelo{
         return this;
     }
 
-    public Vuelo companyia(String companyia) {
-        this.companyia = companyia;
+    public Vuelo aerolinea(String aerolinea) {
+        this.aerolinea = aerolinea;
+        return this;
+    }
+
+    public Vuelo designator(String designator) {
+        this.designator = designator;
         return this;
     }
 
@@ -126,18 +179,43 @@ public class Vuelo{
         return this;
     }
 
-    public Vuelo fechaOrigen(ZonedDateTime fechaOrigen) {
+    public Vuelo precioBaseAdulto(float precioBaseAdulto) {
+        this.precioBaseAdulto = precioBaseAdulto;
+        return this;
+    }
+
+    public Vuelo precioBaseNinyio(float precioBaseNinyio) {
+        this.precioBaseNinyio = precioBaseNinyio;
+        return this;
+    }
+
+    public Vuelo precioMaleta(float precioMaleta) {
+        this.precioMaleta = precioMaleta;
+        return this;
+    }
+
+    public Vuelo fechaOrigen(Calendar fechaOrigen) {
         this.fechaOrigen = fechaOrigen;
         return this;
     }
 
-    public Vuelo fechaDestino(ZonedDateTime fechaDestino) {
+    public Vuelo fechaDestino(Calendar fechaDestino) {
         this.fechaDestino = fechaDestino;
         return this;
     }
 
-    public Vuelo precio(int precio) {
-        this.precio = precio;
+    public Vuelo asientosClase1(int asientosClase1) {
+        this.asientosClase1 = asientosClase1;
+        return this;
+    }
+
+    public Vuelo asientosClase2(int asientosClase2) {
+        this.asientosClase2 = asientosClase2;
+        return this;
+    }
+
+    public Vuelo asientosClase3(int asientosClase3) {
+        this.asientosClase3 = asientosClase3;
         return this;
     }
 
@@ -149,26 +227,32 @@ public class Vuelo{
             return false;
         }
         Vuelo vuelo = (Vuelo) o;
-        return contadorVuelo == vuelo.contadorVuelo && id == vuelo.id && Objects.equals(companyia, vuelo.companyia) && Objects.equals(aeropuertOrigen, vuelo.aeropuertOrigen) && Objects.equals(aeropuertoDestino, vuelo.aeropuertoDestino) && Objects.equals(fechaOrigen, vuelo.fechaOrigen) && Objects.equals(fechaDestino, vuelo.fechaDestino) && precio == vuelo.precio;
+        return id == vuelo.id && Objects.equals(aerolinea, vuelo.aerolinea) && Objects.equals(designator, vuelo.designator) && Objects.equals(aeropuertOrigen, vuelo.aeropuertOrigen) && Objects.equals(aeropuertoDestino, vuelo.aeropuertoDestino) && precioBaseAdulto == vuelo.precioBaseAdulto && precioBaseNinyio == vuelo.precioBaseNinyio && precioMaleta == vuelo.precioMaleta && Objects.equals(fechaOrigen, vuelo.fechaOrigen) && Objects.equals(fechaDestino, vuelo.fechaDestino) && asientosClase1 == vuelo.asientosClase1 && asientosClase2 == vuelo.asientosClase2 && asientosClase3 == vuelo.asientosClase3;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contadorVuelo, id, companyia, aeropuertOrigen, aeropuertoDestino, fechaOrigen, fechaDestino, precio);
+        return Objects.hash(id, aerolinea, designator, aeropuertOrigen, aeropuertoDestino, precioBaseAdulto, precioBaseNinyio, precioMaleta, fechaOrigen, fechaDestino, asientosClase1, asientosClase2, asientosClase3);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " contadorVuelo='" + getContadorVuelo() + "'" +
-            ", id='" + getId() + "'" +
-            ", companyia='" + getCompanyia() + "'" +
+            " id='" + getId() + "'" +
+            ", aerolinea='" + getAerolinea() + "'" +
+            ", designator='" + getDesignator() + "'" +
             ", aeropuertOrigen='" + getAeropuertOrigen() + "'" +
             ", aeropuertoDestino='" + getAeropuertoDestino() + "'" +
+            ", precioBaseAdulto='" + getPrecioBaseAdulto() + "'" +
+            ", precioBaseNinyio='" + getPrecioBaseNinyio() + "'" +
+            ", precioMaleta='" + getPrecioMaleta() + "'" +
             ", fechaOrigen='" + getFechaOrigen() + "'" +
             ", fechaDestino='" + getFechaDestino() + "'" +
-            ", precio='" + getPrecio() + "'" +
+            ", asientosClase1='" + getAsientosClase1() + "'" +
+            ", asientosClase2='" + getAsientosClase2() + "'" +
+            ", asientosClase3='" + getAsientosClase3() + "'" +
             "}";
     }
+
     
 }

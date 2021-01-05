@@ -2,28 +2,55 @@ package Jerarquias;
 
 import java.util.Objects;
 
-public abstract class Usuario {
-    public static int contadorUsuario = 0; 
+public class Usuario {
     protected int id;
     protected String username;
     protected String password;
+    protected String dni;
+    protected String nombre;
+    protected String apellido;
+    protected String email;
+    protected String telefono;
+    protected Pago tarjeta;
+    protected Billete[] bookings;
+    protected int nivel;
 
 
-    public Usuario(String username, String password) {
-        this.id = contadorUsuario;
+    
+
+    public Usuario(String username, String password, String dni, String nombre, String apellido, String email,
+            String telefono, Pago tarjeta, Billete[] bookings, int nivel) {
         this.username = username;
         this.password = password;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+        this.tarjeta = tarjeta;
+        this.bookings = bookings;
+        this.nivel = nivel;
     }
-
+    
     public Usuario() {
-        contadorUsuario++;
-        this.id = contadorUsuario;
         this.username = "";
         this.password = "";
+        this.dni = "";
+        this.nombre = "";
+        this.apellido = "";
+        this.email = "";
+        this.telefono = "";
+        this.tarjeta = null;
+        this.bookings = null;
+        this.nivel = 0;
     }
 
     public int getId() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -42,6 +69,70 @@ public abstract class Usuario {
         this.password = password;
     }
 
+    public String getDni() {
+        return this.dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return this.apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return this.telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Pago getTarjeta() {
+        return this.tarjeta;
+    }
+
+    public void setTarjeta(Pago tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+
+    public Billete[] getBookings() {
+        return this.bookings;
+    }
+
+    public void setBookings(Billete[] bookings) {
+        this.bookings = bookings;
+    }
+
+    public int getNivel() {
+        return this.nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
     public Usuario id(int id) {
         this.id = id;
         return this;
@@ -57,6 +148,46 @@ public abstract class Usuario {
         return this;
     }
 
+    public Usuario dni(String dni) {
+        this.dni = dni;
+        return this;
+    }
+
+    public Usuario nombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
+    public Usuario apellido(String apellido) {
+        this.apellido = apellido;
+        return this;
+    }
+
+    public Usuario email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public Usuario telefono(String telefono) {
+        this.telefono = telefono;
+        return this;
+    }
+
+    public Usuario tarjeta(Pago tarjeta) {
+        this.tarjeta = tarjeta;
+        return this;
+    }
+
+    public Usuario bookings(Billete[] bookings) {
+        this.bookings = bookings;
+        return this;
+    }
+
+    public Usuario nivel(int nivel) {
+        this.nivel = nivel;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -65,12 +196,12 @@ public abstract class Usuario {
             return false;
         }
         Usuario usuario = (Usuario) o;
-        return id == usuario.id && Objects.equals(username, usuario.username) && Objects.equals(password, usuario.password);
+        return id == usuario.id && Objects.equals(username, usuario.username) && Objects.equals(password, usuario.password) && Objects.equals(dni, usuario.dni) && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido) && Objects.equals(email, usuario.email) && Objects.equals(telefono, usuario.telefono) && Objects.equals(tarjeta, usuario.tarjeta) && Objects.equals(bookings, usuario.bookings) && nivel == usuario.nivel;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(id, username, password, dni, nombre, apellido, email, telefono, tarjeta, bookings, nivel);
     }
 
     @Override
@@ -79,7 +210,15 @@ public abstract class Usuario {
             " id='" + getId() + "'" +
             ", username='" + getUsername() + "'" +
             ", password='" + getPassword() + "'" +
+            ", dni='" + getDni() + "'" +
+            ", nombre='" + getNombre() + "'" +
+            ", apellido='" + getApellido() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", telefono='" + getTelefono() + "'" +
+            ", tarjeta='" + getTarjeta() + "'" +
+            ", bookings='" + getBookings() + "'" +
+            ", nivel='" + getNivel() + "'" +
             "}";
     }
-   
+    
 }

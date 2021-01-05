@@ -3,8 +3,7 @@ package Jerarquias;
 import java.util.Objects;
 
 public class Aeropuerto {
-   
-    public static int contadorAeropuerto = 0;
+
     protected int id;
     protected String nombre;
     protected String IATA;
@@ -12,8 +11,6 @@ public class Aeropuerto {
     protected String pais;
 
     public Aeropuerto(String nombre, String IATA, String ciudad, String pais) {
-        contadorAeropuerto++;
-        this.id = contadorAeropuerto;
         this.nombre = nombre;
         this.IATA = IATA;
         this.ciudad = ciudad;
@@ -21,23 +18,21 @@ public class Aeropuerto {
     }
 
     public Aeropuerto() {
-        contadorAeropuerto++;
-        this.id = contadorAeropuerto;
         this.nombre = "";
         this.IATA = "";
         this.ciudad = "";
         this.pais = "";
     }
 
-    public int getid() {
+    public int getId() {
         return this.id;
     }
 
-    public String getnombre() {
+    public String getNombre() {
         return this.nombre;
     }
 
-    public void setnombre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -45,37 +40,37 @@ public class Aeropuerto {
         return this.IATA;
     }
 
-    public void IATA(String IATA) {
+    public void setIATA(String IATA) {
         this.IATA = IATA;
     }
 
-    public String getciudad() {
+    public String getCiudad() {
         return this.ciudad;
     }
 
-    public void setciudad(String ciudad) {
+    public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
 
-    public String getpais() {
+    public String getPais() {
         return this.pais;
     }
 
-    public void setpais(String pais) {
+    public void setPais(String pais) {
         this.pais = pais;
     }
 
-    public Aeropuerto id(int id) {
+    public Aeropuerto Id(int id) {
         this.id = id;
         return this;
     }
 
-    public Aeropuerto nombre(String nombre) {
+    public Aeropuerto Nombre(String nombre) {
         this.nombre = nombre;
         return this;
     }
 
-    public Aeropuerto iATA(String IATA) {
+    public Aeropuerto IATA(String IATA) {
         this.IATA = IATA;
         return this;
     }
@@ -109,11 +104,11 @@ public class Aeropuerto {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getid() + "'" +
-            ", nombre='" + getnombre() + "'" +
+            " id='" + getId() + "'" +
+            ", nombre='" + getNombre() + "'" +
             ", nombre='" + getIATA() + "'" +
-            ", ciudad='" + getciudad() + "'" +
-            ", pais='" + getpais() + "'" +
+            ", ciudad='" + getCiudad() + "'" +
+            ", pais='" + getPais() + "'" +
             "}";
     }
 }
