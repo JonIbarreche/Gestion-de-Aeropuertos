@@ -1,21 +1,21 @@
 package Jerarquias;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Billete {
 
     private int id;
-    private Vuelo[] vuelos;
+    private ArrayList<Vuelo> vuelos;
     private int numPasajerosAdultos;
     private int numPasajerosNinyios;
     private int numMaletas;
     private int clase;
     private float precio;
 
-    public Billete(Vuelo[] vuelos, int numPasajerosAdultos, int numPasajerosNinyios, int numMaletas, int clase,
-            float precio) {
-
-        this.vuelos = vuelos;
+    public Billete(int numPasajerosAdultos, int numPasajerosNinyios, int numMaletas,
+            int clase, float precio) {
+        this.vuelos = new ArrayList<Vuelo>();
         this.numPasajerosAdultos = numPasajerosAdultos;
         this.numPasajerosNinyios = numPasajerosNinyios;
         this.numMaletas = numMaletas;
@@ -24,7 +24,7 @@ public class Billete {
     }
     
     public Billete() {
-        this.vuelos = null;
+        this.vuelos = new ArrayList<Vuelo>();
         this.numPasajerosAdultos = 0;
         this.numPasajerosNinyios = 0;
         this.numMaletas = 0;
@@ -40,12 +40,16 @@ public class Billete {
         this.id = id;
     }
 
-    public Vuelo[] getVuelos() {
+    public ArrayList<Vuelo> getVuelos() {
         return this.vuelos;
     }
 
-    public void setVuelos(Vuelo[] vuelos) {
+    public void setVuelos(ArrayList<Vuelo> vuelos) {
         this.vuelos = vuelos;
+    }
+
+    public void addVuelo(Vuelo vuelo) {
+        this.vuelos.add(vuelo);
     }
 
     public int getNumPasajerosAdultos() {
@@ -93,7 +97,7 @@ public class Billete {
         return this;
     }
 
-    public Billete vuelos(Vuelo[] vuelos) {
+    public Billete vuelos(ArrayList<Vuelo> vuelos) {
         this.vuelos = vuelos;
         return this;
     }

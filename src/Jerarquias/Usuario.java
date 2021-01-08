@@ -12,14 +12,11 @@ public class Usuario {
     protected String email;
     protected String telefono;
     protected Pago tarjeta;
-    protected Billete[] bookings;
+    protected Billete[] billetes;
     protected int nivel;
 
-
-    
-
     public Usuario(String username, String password, String dni, String nombre, String apellido, String email,
-            String telefono, Pago tarjeta, Billete[] bookings, int nivel) {
+            String telefono, Pago tarjeta, Billete[] billetes, int nivel) {
         this.username = username;
         this.password = password;
         this.dni = dni;
@@ -28,10 +25,10 @@ public class Usuario {
         this.email = email;
         this.telefono = telefono;
         this.tarjeta = tarjeta;
-        this.bookings = bookings;
+        this.billetes = billetes;
         this.nivel = nivel;
     }
-    
+
     public Usuario() {
         this.username = "";
         this.password = "";
@@ -41,7 +38,7 @@ public class Usuario {
         this.email = "";
         this.telefono = "";
         this.tarjeta = null;
-        this.bookings = null;
+        this.billetes = null;
         this.nivel = 0;
     }
 
@@ -117,12 +114,12 @@ public class Usuario {
         this.tarjeta = tarjeta;
     }
 
-    public Billete[] getBookings() {
-        return this.bookings;
+    public Billete[] getBilletes() {
+        return this.billetes;
     }
 
-    public void setBookings(Billete[] bookings) {
-        this.bookings = bookings;
+    public void setBilletes(Billete[] billetes) {
+        this.billetes = billetes;
     }
 
     public int getNivel() {
@@ -178,8 +175,8 @@ public class Usuario {
         return this;
     }
 
-    public Usuario bookings(Billete[] bookings) {
-        this.bookings = bookings;
+    public Usuario billetes(Billete[] billetes) {
+        this.billetes = billetes;
         return this;
     }
 
@@ -196,29 +193,25 @@ public class Usuario {
             return false;
         }
         Usuario usuario = (Usuario) o;
-        return id == usuario.id && Objects.equals(username, usuario.username) && Objects.equals(password, usuario.password) && Objects.equals(dni, usuario.dni) && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido) && Objects.equals(email, usuario.email) && Objects.equals(telefono, usuario.telefono) && Objects.equals(tarjeta, usuario.tarjeta) && Objects.equals(bookings, usuario.bookings) && nivel == usuario.nivel;
+        return id == usuario.id && Objects.equals(username, usuario.username)
+                && Objects.equals(password, usuario.password) && Objects.equals(dni, usuario.dni)
+                && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido)
+                && Objects.equals(email, usuario.email) && Objects.equals(telefono, usuario.telefono)
+                && Objects.equals(tarjeta, usuario.tarjeta) && Objects.equals(billetes, usuario.billetes)
+                && nivel == usuario.nivel;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, dni, nombre, apellido, email, telefono, tarjeta, bookings, nivel);
+        return Objects.hash(id, username, password, dni, nombre, apellido, email, telefono, tarjeta, billetes, nivel);
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", username='" + getUsername() + "'" +
-            ", password='" + getPassword() + "'" +
-            ", dni='" + getDni() + "'" +
-            ", nombre='" + getNombre() + "'" +
-            ", apellido='" + getApellido() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", telefono='" + getTelefono() + "'" +
-            ", tarjeta='" + getTarjeta() + "'" +
-            ", bookings='" + getBookings() + "'" +
-            ", nivel='" + getNivel() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", username='" + getUsername() + "'" + ", password='" + getPassword()
+                + "'" + ", dni='" + getDni() + "'" + ", nombre='" + getNombre() + "'" + ", apellido='" + getApellido()
+                + "'" + ", email='" + getEmail() + "'" + ", telefono='" + getTelefono() + "'" + ", tarjeta='"
+                + getTarjeta() + "'" + ", billetes='" + getBilletes() + "'" + ", nivel='" + getNivel() + "'" + "}";
     }
-    
+
 }

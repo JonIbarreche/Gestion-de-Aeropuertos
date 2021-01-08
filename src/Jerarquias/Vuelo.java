@@ -8,8 +8,8 @@ public class Vuelo{
     protected int id;
     protected String aerolinea;
     protected String designator;
-    protected Aeropuerto aeropuertOrigen;
-    protected Aeropuerto aeropuertoDestino;
+    protected String aeropuertOrigen;
+    protected String aeropuertoDestino;
     protected float precioBaseAdulto;
     protected float precioBaseNinyio;
     protected float precioMaleta;
@@ -19,23 +19,9 @@ public class Vuelo{
     protected int asientosClase2;
     protected int asientosClase3;
 
-
-    public Vuelo() {
-        this.aerolinea = "";
-        this.designator = "";
-        this.aeropuertOrigen = null;
-        this.aeropuertoDestino = null;
-        this.precioBaseAdulto = 0;
-        this.precioBaseNinyio = 0;
-        this.precioMaleta = 0;
-        this.fechaOrigen = null;
-        this.fechaDestino = null;
-        this.asientosClase1 = 0;
-        this.asientosClase2 = 0;
-        this.asientosClase3 = 0;
-    }
-
-    public Vuelo(String aerolinea, String designator, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, float precioBaseAdulto, float precioBaseNinyio, float precioMaleta, Calendar fechaOrigen, Calendar fechaDestino, int asientosClase1, int asientosClase2, int asientosClase3) {
+    public Vuelo(String aerolinea, String designator, String aeropuertOrigen, String aeropuertoDestino,
+            float precioBaseAdulto, float precioBaseNinyio, float precioMaleta, Calendar fechaOrigen,
+            Calendar fechaDestino, int asientosClase1, int asientosClase2, int asientosClase3) {
         this.aerolinea = aerolinea;
         this.designator = designator;
         this.aeropuertOrigen = aeropuertOrigen;
@@ -50,6 +36,21 @@ public class Vuelo{
         this.asientosClase3 = asientosClase3;
     }
 
+    public Vuelo() {
+        this.aerolinea = "";
+        this.designator = "";
+        this.aeropuertOrigen = "";
+        this.aeropuertoDestino = "";
+        this.precioBaseAdulto = 0;
+        this.precioBaseNinyio = 0;
+        this.precioMaleta = 0;
+        this.fechaOrigen = null;
+        this.fechaDestino = null;
+        this.asientosClase1 = 0;
+        this.asientosClase2 = 0;
+        this.asientosClase3 = 0;
+    }
+    
     public int getId() {
         return this.id;
     }
@@ -74,19 +75,19 @@ public class Vuelo{
         this.designator = designator;
     }
 
-    public Aeropuerto getAeropuertOrigen() {
+    public String getAeropuertOrigen() {
         return this.aeropuertOrigen;
     }
 
-    public void setAeropuertOrigen(Aeropuerto aeropuertOrigen) {
+    public void setAeropuertOrigen(String aeropuertOrigen) {
         this.aeropuertOrigen = aeropuertOrigen;
     }
 
-    public Aeropuerto getAeropuertoDestino() {
+    public String getAeropuertoDestino() {
         return this.aeropuertoDestino;
     }
 
-    public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
+    public void setAeropuertoDestino(String aeropuertoDestino) {
         this.aeropuertoDestino = aeropuertoDestino;
     }
 
@@ -169,12 +170,12 @@ public class Vuelo{
         return this;
     }
 
-    public Vuelo aeropuertOrigen(Aeropuerto aeropuertOrigen) {
+    public Vuelo aeropuertOrigen(String aeropuertOrigen) {
         this.aeropuertOrigen = aeropuertOrigen;
         return this;
     }
 
-    public Vuelo aeropuertoDestino(Aeropuerto aeropuertoDestino) {
+    public Vuelo aeropuertoDestino(String aeropuertoDestino) {
         this.aeropuertoDestino = aeropuertoDestino;
         return this;
     }
