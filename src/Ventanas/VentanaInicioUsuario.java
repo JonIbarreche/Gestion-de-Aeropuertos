@@ -12,13 +12,18 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import com.toedter.calendar.JCalendar;
+
+import Controladores.ControladorVuelos;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 
 public class VentanaInicioUsuario extends JFrame {
 
@@ -98,7 +103,22 @@ public class VentanaInicioUsuario extends JFrame {
 		pnlBtnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(txtOrigen.getText().equals("Bilbao") && txtDestino.getText().equals("Madrid") ) {
+				// ControladorVuelos cv = new ControladorVuelos();
+				// Boolean isSoloIda;
+				// int numeroAdultos ;
+				// int numeroNinyios;
+				// int numeroMaletas;
+				// int clase;
+				// String origen = txtOrigen.getText();
+				// String destino = txtOrigen.getText();
+				// Calendar fechaSalida;
+				// Calendar fechaVuelta;
+
+				// if (numeroAdultos == 0 && numeroNinyios == 0 && numeroMaletas == 0 && clase == 0) {
+					
+				// }
+
+				if(txtOrigen.getText().equals("") && txtDestino.getText().equals("Madrid") ) {
 					// si son correctos
 					lblBuscarMessage.setText("");
 					JOptionPane.showMessageDialog(null, "Busqueda Realizada");
@@ -141,6 +161,7 @@ public class VentanaInicioUsuario extends JFrame {
 				lblX.setForeground(Color.WHITE);
 			}
 		});
+
 		lblX.setHorizontalAlignment(SwingConstants.CENTER);
 		lblX.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblX.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -190,24 +211,20 @@ public class VentanaInicioUsuario extends JFrame {
 		comboBox_4.setBounds(526, 126, 74, 21);
 		contentPane.add(comboBox_4);
 		
-		JCalendar calendar = new JCalendar();
-		calendar.setBounds(153, 234, 187, 126);
-		contentPane.add(calendar);
+		JCalendar calendar1 = new JCalendar();
+		calendar1.setBounds(153, 234, 187, 126);
+		contentPane.add(calendar1);
 		
-		JCalendar calendar_1 = new JCalendar();
-		calendar_1.setBounds(413, 234, 187, 126);
-		contentPane.add(calendar_1);
+		JCalendar calendar2 = new JCalendar();
+		calendar2.setBounds(413, 234, 187, 126);
+		contentPane.add(calendar2);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 		
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String selectedItem = (String) comboBox.getSelectedItem();
-				if(selectedItem.equals("Ida")){
-                    calendar_1.setVisible(false);
-                }else{
-                    calendar_1.setVisible(true);
-                }
+				calendar2.setVisible(selectedItem.equals("Ida"));
 			}
 		});
 		
