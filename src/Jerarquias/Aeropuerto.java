@@ -10,7 +10,8 @@ public class Aeropuerto {
     protected String ciudad;
     protected String pais;
 
-    public Aeropuerto(String nombre, String IATA, String ciudad, String pais) {
+    public Aeropuerto(int id, String nombre, String IATA, String ciudad, String pais) {
+        this.id = id;
         this.nombre = nombre;
         this.IATA = IATA;
         this.ciudad = ciudad;
@@ -18,14 +19,19 @@ public class Aeropuerto {
     }
 
     public Aeropuerto() {
+        this.id = 0;
         this.nombre = "";
         this.IATA = "";
         this.ciudad = "";
         this.pais = "";
     }
-
+    
     public int getId() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -60,28 +66,28 @@ public class Aeropuerto {
         this.pais = pais;
     }
 
-    public Aeropuerto Id(int id) {
-        this.id = id;
+    public Aeropuerto id(int id) {
+        setId(id);
         return this;
     }
 
-    public Aeropuerto Nombre(String nombre) {
-        this.nombre = nombre;
+    public Aeropuerto nombre(String nombre) {
+        setNombre(nombre);
         return this;
     }
 
     public Aeropuerto IATA(String IATA) {
-        this.IATA = IATA;
+        setIATA(IATA);
         return this;
     }
 
     public Aeropuerto ciudad(String ciudad) {
-        this.ciudad = ciudad;
+        setCiudad(ciudad);
         return this;
     }
 
     public Aeropuerto pais(String pais) {
-        this.pais = pais;
+        setPais(pais);
         return this;
     }
 
@@ -106,9 +112,10 @@ public class Aeropuerto {
         return "{" +
             " id='" + getId() + "'" +
             ", nombre='" + getNombre() + "'" +
-            ", nombre='" + getIATA() + "'" +
+            ", IATA='" + getIATA() + "'" +
             ", ciudad='" + getCiudad() + "'" +
             ", pais='" + getPais() + "'" +
             "}";
     }
+    
 }

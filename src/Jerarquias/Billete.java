@@ -1,37 +1,39 @@
 package Jerarquias;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Billete {
 
     private int id;
-    private ArrayList<Vuelo> vuelos;
+    private Vuelo vuelo;
     private int numPasajerosAdultos;
     private int numPasajerosNinyios;
     private int numMaletas;
     private int clase;
     private float precio;
 
-    public Billete(int numPasajerosAdultos, int numPasajerosNinyios, int numMaletas,
-            int clase, float precio) {
-        this.vuelos = new ArrayList<Vuelo>();
+    public Billete(int id, Vuelo vuelo, int numPasajerosAdultos, int numPasajerosNinyios, int numMaletas, int clase, float precio) {
+        this.id = id;
+        this.vuelo = vuelo;
         this.numPasajerosAdultos = numPasajerosAdultos;
         this.numPasajerosNinyios = numPasajerosNinyios;
         this.numMaletas = numMaletas;
         this.clase = clase;
         this.precio = precio;
     }
-    
+
     public Billete() {
-        this.vuelos = new ArrayList<Vuelo>();
+        this.id = 0;
+        this.vuelo = null;
         this.numPasajerosAdultos = 0;
         this.numPasajerosNinyios = 0;
         this.numMaletas = 0;
         this.clase = 0;
         this.precio = 0;
     }
-
+        
     public int getId() {
         return this.id;
     }
@@ -40,16 +42,12 @@ public class Billete {
         this.id = id;
     }
 
-    public ArrayList<Vuelo> getVuelos() {
-        return this.vuelos;
+    public Vuelo getVuelo() {
+        return this.vuelo;
     }
 
-    public void setVuelos(ArrayList<Vuelo> vuelos) {
-        this.vuelos = vuelos;
-    }
-
-    public void addVuelo(Vuelo vuelo) {
-        this.vuelos.add(vuelo);
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
     }
 
     public int getNumPasajerosAdultos() {
@@ -93,37 +91,37 @@ public class Billete {
     }
 
     public Billete id(int id) {
-        this.id = id;
+        setId(id);
         return this;
     }
 
-    public Billete vuelos(ArrayList<Vuelo> vuelos) {
-        this.vuelos = vuelos;
+    public Billete vuelo(Vuelo vuelo) {
+        setVuelo(vuelo);
         return this;
     }
 
     public Billete numPasajerosAdultos(int numPasajerosAdultos) {
-        this.numPasajerosAdultos = numPasajerosAdultos;
+        setNumPasajerosAdultos(numPasajerosAdultos);
         return this;
     }
 
     public Billete numPasajerosNinyios(int numPasajerosNinyios) {
-        this.numPasajerosNinyios = numPasajerosNinyios;
+        setNumPasajerosNinyios(numPasajerosNinyios);
         return this;
     }
 
     public Billete numMaletas(int numMaletas) {
-        this.numMaletas = numMaletas;
+        setNumMaletas(numMaletas);
         return this;
     }
 
     public Billete clase(int clase) {
-        this.clase = clase;
+        setClase(clase);
         return this;
     }
 
     public Billete precio(float precio) {
-        this.precio = precio;
+        setPrecio(precio);
         return this;
     }
 
@@ -135,19 +133,19 @@ public class Billete {
             return false;
         }
         Billete billete = (Billete) o;
-        return id == billete.id && Objects.equals(vuelos, billete.vuelos) && numPasajerosAdultos == billete.numPasajerosAdultos && numPasajerosNinyios == billete.numPasajerosNinyios && numMaletas == billete.numMaletas && clase == billete.clase && precio == billete.precio;
+        return id == billete.id && Objects.equals(vuelo, billete.vuelo) && numPasajerosAdultos == billete.numPasajerosAdultos && numPasajerosNinyios == billete.numPasajerosNinyios && numMaletas == billete.numMaletas && clase == billete.clase && precio == billete.precio;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vuelos, numPasajerosAdultos, numPasajerosNinyios, numMaletas, clase, precio);
+        return Objects.hash(id, vuelo, numPasajerosAdultos, numPasajerosNinyios, numMaletas, clase, precio);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", vuelos='" + getVuelos() + "'" +
+            ", vuelo='" + getVuelo() + "'" +
             ", numPasajerosAdultos='" + getNumPasajerosAdultos() + "'" +
             ", numPasajerosNinyios='" + getNumPasajerosNinyios() + "'" +
             ", numMaletas='" + getNumMaletas() + "'" +
@@ -156,6 +154,5 @@ public class Billete {
             "}";
     }
 
-    
    
 }
