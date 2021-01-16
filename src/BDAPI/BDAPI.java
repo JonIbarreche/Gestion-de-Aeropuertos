@@ -29,18 +29,18 @@ public class BDAPI {
     public BDAPI() {
 
         String queryCreateTableAeropuertos = "CREATE TABLE IF NOT EXISTS aeropuertos (\n"
-                + "	id integer PRIMARY KEY,\n" + "	nombre text NOT NULL,\n" + "	iata text NOT NULL UNIQUE,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n" + "	nombre text NOT NULL,\n" + "	iata text NOT NULL UNIQUE,\n"
                 + "	ciudad text NOT NULL,\n" + "	pais text NOT NULL\n" + ");";
         
-        String queryCreateTableClientes = "CREATE TABLE IF NOT EXISTS clientes (\n" + "	id integer PRIMARY KEY,\n"
+        String queryCreateTableClientes = "CREATE TABLE IF NOT EXISTS clientes (\n" + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	username text NOT NULL UNIQUE,\n" + "	password text NOT NULL,\n" + "	dni text UNIQUE,\n"
                 + "	nombre text,\n" + "	apellido text,\n" + "	email text,\n" + "	telefono text\n"
                 + ");";
 
-        String queryCreateTableAdmins = "CREATE TABLE IF NOT EXISTS admins (\n" + "	id integer PRIMARY KEY,\n"
+        String queryCreateTableAdmins = "CREATE TABLE IF NOT EXISTS admins (\n" + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
         + "	username text NOT NULL UNIQUE,\n" + "	password text NOT NULL,\n" + "	nivel integer\n" + ");";
 
-        String queryCreateTableVuelos = "CREATE TABLE IF NOT EXISTS vuelos (\n" + "	id integer PRIMARY KEY,\n"
+        String queryCreateTableVuelos = "CREATE TABLE IF NOT EXISTS vuelos (\n" + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	aerolinea text NOT NULL,\n" + "	designator text NOT NULL,\n" + "aeropuerto_origen integer,\n"
                 + " aeropuerto_destino integer,\n" + "	precio_base_adulto real NOT NULL,\n"
                 + "	precio_base_ninyio real NOT NULL,\n" + "	precio_maleta real NOT NULL,\n"
@@ -49,11 +49,11 @@ public class BDAPI {
                 + " FOREIGN KEY(aeropuerto_origen) REFERENCES aeropuertos(id),\n"
                 + " FOREIGN KEY(aeropuerto_destino) REFERENCES aeropuertos(id)\n" + ");";
 
-        String queryCreateTableBilletes = "CREATE TABLE IF NOT EXISTS billetes (\n" + "	id integer PRIMARY KEY,\n" + "	cliente integer NOT NULL,\n"
+        String queryCreateTableBilletes = "CREATE TABLE IF NOT EXISTS billetes (\n" + "	id integer PRIMARY KEY AUTOINCREMENT,\n" + "	cliente integer NOT NULL,\n"
                 + "	vuelo integer NOT NULL,\n" + "	numero_pasajeros_adultos integer NOT NULL,\n"
                 + "	numero_pasajeros_ninyios integer NOT NULL,\n" + "	numero_maletas integer NOT NULL,\n"
                 + "	clase integer NOT NULL,\n" + "	precio real NOT NULL,\n"
-                + " FOREIGN KEY(vuelo) REFERENCES vuelos(id)\n" + " FOREIGN KEY(usuario) REFERENCES usuarios(id)\n"
+                + " FOREIGN KEY(vuelo) REFERENCES vuelos(id)\n" + " FOREIGN KEY(cliente) REFERENCES clientes(id)\n"
                 + ");";
                         
         try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
@@ -119,7 +119,7 @@ public class BDAPI {
 
     
 
-    // Editar usuario
+    // Editar cliente
     public Cliente editarCliente(Cliente cliente) {
         try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
             if (conn != null) {
@@ -149,7 +149,7 @@ public class BDAPI {
                     }
                     if (!encontrado) {
 
-                        String sqlInsert = "INSERT INTO clientes SET(username, password, dni, nombre, apellido, email, telefono) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                        String sqlInsert = "INSERT INTO clientes (username, password, dni, nombre, apellido, email, telefono) VALUES (?, ?, ?, ?, ?, ?, ?)";
                         PreparedStatement pst = conn.prepareStatement(sqlInsert);
 
                         pst.setString(1, cliente.getUsername());
@@ -184,7 +184,7 @@ public class BDAPI {
 
                     while (rs.next()) {
                         if (rs.getInt("id") == admin.getId()) {
-                            String sqlUpdate = "UPDATE admin SET(username, password, nivel) VALUES (?, ?, ?)";
+                            String sqlUpdate = "UPDATE admin SET (username, password, nivel) VALUES (?, ?, ?)";
                             PreparedStatement pst = conn.prepareStatement(sqlUpdate);
 
                             pst.setString(1, admin.getUsername());
@@ -198,7 +198,7 @@ public class BDAPI {
                     }
                     if (!encontrado) {
 
-                        String sqlInsert = "INSERT INTO admin SET(username, password, nivel) VALUES (?, ?, ?)";
+                        String sqlInsert = "INSERT INTO admin (username, password, nivel) VALUES (?, ?, ?)";
                         PreparedStatement pst = conn.prepareStatement(sqlInsert);
 
                         pst.setString(1, admin.getUsername());
@@ -229,7 +229,7 @@ public class BDAPI {
 
                     while (rs.next()) {
                         if (rs.getInt("id") == vuelo.getId()) {
-                            String sqlUpdate = "UPDATE vuelos SET (aerolinea, designator, aeropuerto_origen, aeropuerto_destino, precio_base_adulto, precio_base_ninyio, precio_maleta, fecha, asientos_clase_1, asientos_clase_2, asientos_clase_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            String sqlUpdate = "UPDATE vuelos SET (aerolinea, designator, aeropuerto_origen, aeropuerto_destino, precio_base_adulto, precio_base_ninyio, precio_maleta, fecha, asientos_clase_1, asientos_clase_2, asientos_clase_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                             PreparedStatement pst = conn.prepareStatement(sqlUpdate);
                             
                             pst.setString(1, vuelo.getAerolinea());
@@ -250,7 +250,7 @@ public class BDAPI {
                         }
                     }
                     if (!encontrado) {
-                        String sqlInsert = "INSERT INTO vuelos (aerolinea, designator, aeropuerto_origen, aeropuerto_destino, precio_base_adulto, precio_base_ninyio, precio_maleta, fecha_origen, fecha_destino, asientos_clase_1, asientos_clase_2, asientos_clase_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        String sqlInsert = "INSERT INTO vuelos (aerolinea, designator, aeropuerto_origen, aeropuerto_destino, precio_base_adulto, precio_base_ninyio, precio_maleta, fecha, asientos_clase_1, asientos_clase_2, asientos_clase_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                         PreparedStatement pst = conn.prepareStatement(sqlInsert);
                         pst.setString(1, vuelo.getAerolinea());
                             pst.setString(2, vuelo.getDesignator());
@@ -643,7 +643,7 @@ public class BDAPI {
     // }
 
     //
-    public Vuelo getVueloIda(Vuelo vuelo) {
+    public Vuelo getVuelo(Vuelo vuelo) {
         try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
             if (conn != null) {
                 try {
@@ -659,8 +659,7 @@ public class BDAPI {
                         ResultSet rsAerpuertoDestino = stmt.executeQuery(sqlExisteAeropuertoDestino);
 
                         PreparedStatement pstExisteAeropuertoOrigen = conn.prepareStatement(sqlExisteAeropuertoOrigen);
-                        PreparedStatement pstExisteAeropuertoDestino = conn
-                                .prepareStatement(sqlExisteAeropuertoDestino);
+                        PreparedStatement pstExisteAeropuertoDestino = conn.prepareStatement(sqlExisteAeropuertoDestino);
 
                         pstExisteAeropuertoOrigen.setObject(1, vuelo.getAeropuertOrigen().getCiudad());
                         pstExisteAeropuertoDestino.setObject(1, vuelo.getAeropuertoDestino().getCiudad());
