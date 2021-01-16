@@ -6,16 +6,19 @@ import java.util.Objects;
 
 public class Billete {
 
-    private int id;
-    private Vuelo vuelo;
-    private int numPasajerosAdultos;
-    private int numPasajerosNinyios;
-    private int numMaletas;
-    private int clase;
-    private float precio;
+    protected int id;
+    protected Cliente cliente;
+    protected Vuelo vuelo;
+    protected int numPasajerosAdultos;
+    protected int numPasajerosNinyios;
+    protected int numMaletas;
+    protected int clase;
+    protected float precio;
 
-    public Billete(int id, Vuelo vuelo, int numPasajerosAdultos, int numPasajerosNinyios, int numMaletas, int clase, float precio) {
+    public Billete(int id, Cliente cliente, Vuelo vuelo, int numPasajerosAdultos, int numPasajerosNinyios,
+            int numMaletas, int clase, float precio) {
         this.id = id;
+        this.cliente = cliente;
         this.vuelo = vuelo;
         this.numPasajerosAdultos = numPasajerosAdultos;
         this.numPasajerosNinyios = numPasajerosNinyios;
@@ -23,9 +26,10 @@ public class Billete {
         this.clase = clase;
         this.precio = precio;
     }
-
+    
     public Billete() {
         this.id = 0;
+        this.cliente = null;
         this.vuelo = null;
         this.numPasajerosAdultos = 0;
         this.numPasajerosNinyios = 0;
@@ -40,6 +44,14 @@ public class Billete {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Vuelo getVuelo() {
@@ -95,6 +107,11 @@ public class Billete {
         return this;
     }
 
+    public Billete cliente(Cliente cliente) {
+        setCliente(cliente);
+        return this;
+    }
+
     public Billete vuelo(Vuelo vuelo) {
         setVuelo(vuelo);
         return this;
@@ -125,26 +142,12 @@ public class Billete {
         return this;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Billete)) {
-            return false;
-        }
-        Billete billete = (Billete) o;
-        return id == billete.id && Objects.equals(vuelo, billete.vuelo) && numPasajerosAdultos == billete.numPasajerosAdultos && numPasajerosNinyios == billete.numPasajerosNinyios && numMaletas == billete.numMaletas && clase == billete.clase && precio == billete.precio;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, vuelo, numPasajerosAdultos, numPasajerosNinyios, numMaletas, clase, precio);
-    }
-
+   
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
+            ", cliente='" + getCliente() + "'" +
             ", vuelo='" + getVuelo() + "'" +
             ", numPasajerosAdultos='" + getNumPasajerosAdultos() + "'" +
             ", numPasajerosNinyios='" + getNumPasajerosNinyios() + "'" +
@@ -153,6 +156,6 @@ public class Billete {
             ", precio='" + getPrecio() + "'" +
             "}";
     }
-
+    
    
 }

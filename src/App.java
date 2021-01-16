@@ -46,6 +46,10 @@ public class App {
 					// frameAdmin.setVisible(true);
 					VentanaInicioUsuario frameInicioUsuario = new VentanaInicioUsuario();
 					frameInicioUsuario.setVisible(true);
+					// Aeropuerto o1 = new Aeropuerto("Barajas", "JHDF", "Madrid", "España");
+					// Aeropuerto o2 = new Aeropuerto("Prat", "JSDHF", "Barcelona", "España");
+					// bd.editarAeropuerto(o1);
+					// bd.editarAeropuerto(o2);
 					//VentanaBusqueda frameBusqueda = new VentanaBusqueda();
 					//frameBusqueda.setVisible(true);
 					//VentanaPago framePago = new VentanaPago();

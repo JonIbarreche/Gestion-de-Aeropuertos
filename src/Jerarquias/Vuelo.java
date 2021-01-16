@@ -2,6 +2,7 @@ package Jerarquias;
 
 import java.util.Calendar;
 import java.util.Objects;
+import java.util.Date;
 
 public class Vuelo{
 
@@ -17,9 +18,6 @@ public class Vuelo{
     protected int asientosClase1;
     protected int asientosClase2;
     protected int asientosClase3;
-
-
-    
 
     public Vuelo(int id, String aerolinea, String designator, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, float precioBaseAdulto, float precioBaseNinyio, float precioMaleta, String fecha, int asientosClase1, int asientosClase2, int asientosClase3) {
         this.id = id;
@@ -44,7 +42,7 @@ public class Vuelo{
         this.precioBaseAdulto = 0;
         this.precioBaseNinyio = 0;
         this.precioMaleta = 0;
-        this.fecha = null;
+        this.fecha = "";
         this.asientosClase1 = 0;
         this.asientosClase2 = 0;
         this.asientosClase3 = 0;
@@ -204,22 +202,6 @@ public class Vuelo{
     public Vuelo asientosClase3(int asientosClase3) {
         setAsientosClase3(asientosClase3);
         return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Vuelo)) {
-            return false;
-        }
-        Vuelo vuelo = (Vuelo) o;
-        return id == vuelo.id && Objects.equals(aerolinea, vuelo.aerolinea) && Objects.equals(designator, vuelo.designator) && Objects.equals(aeropuertOrigen, vuelo.aeropuertOrigen) && Objects.equals(aeropuertoDestino, vuelo.aeropuertoDestino) && precioBaseAdulto == vuelo.precioBaseAdulto && precioBaseNinyio == vuelo.precioBaseNinyio && precioMaleta == vuelo.precioMaleta && Objects.equals(fecha, vuelo.fecha) && asientosClase1 == vuelo.asientosClase1 && asientosClase2 == vuelo.asientosClase2 && asientosClase3 == vuelo.asientosClase3;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, aerolinea, designator, aeropuertOrigen, aeropuertoDestino, precioBaseAdulto, precioBaseNinyio, precioMaleta, fecha, asientosClase1, asientosClase2, asientosClase3);
     }
 
     @Override

@@ -92,22 +92,6 @@ public class Aeropuerto {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Aeropuerto)) {
-            return false;
-        }
-        Aeropuerto aeropuerto = (Aeropuerto) o;
-        return id == aeropuerto.id && Objects.equals(nombre, aeropuerto.nombre) && Objects.equals(IATA, aeropuerto.IATA) && Objects.equals(ciudad, aeropuerto.ciudad) && Objects.equals(pais, aeropuerto.pais);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nombre, IATA, ciudad, pais);
-    }
-
-    @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
