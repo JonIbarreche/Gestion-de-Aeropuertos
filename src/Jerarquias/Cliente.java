@@ -10,9 +10,8 @@ public class Cliente extends Usuario{
     protected String email;
     protected String telefono;
 
-    public Cliente(int id, String username , String password, String dni, String nombre, String apellido, String email, String telefono) {
-        super(id, username, password);
-        this.dni = dni;
+    public Cliente(String username , String password, String dni, String nombre, String apellido, String email, String telefono) {
+        super(username, password);
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;

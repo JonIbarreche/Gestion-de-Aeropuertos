@@ -3,8 +3,8 @@ package Jerarquias;
 public class Admin extends Usuario {
     protected int nivel;
 
-    public Admin(int id, String username, String password, int nivel) {
-        super(id, username, password);
+    public Admin(String username, String password, int nivel) {
+        super(username, password);
         this.nivel = nivel;
     }
 

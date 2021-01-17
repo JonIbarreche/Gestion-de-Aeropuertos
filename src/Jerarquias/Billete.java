@@ -15,9 +15,8 @@ public class Billete {
     protected int clase;
     protected float precio;
 
-    public Billete(int id, Cliente cliente, Vuelo vuelo, int numPasajerosAdultos, int numPasajerosNinyios,
+    public Billete(Cliente cliente, Vuelo vuelo, int numPasajerosAdultos, int numPasajerosNinyios,
             int numMaletas, int clase, float precio) {
-        this.id = id;
         this.cliente = cliente;
         this.vuelo = vuelo;
         this.numPasajerosAdultos = numPasajerosAdultos;
@@ -28,7 +27,6 @@ public class Billete {
     }
     
     public Billete() {
-        this.id = 0;
         this.cliente = null;
         this.vuelo = null;
         this.numPasajerosAdultos = 0;

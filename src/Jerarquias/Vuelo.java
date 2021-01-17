@@ -15,12 +15,13 @@ public class Vuelo{
     protected float precioBaseNinyio;
     protected float precioMaleta;
     protected String fecha;
+    protected String hora;
     protected int asientosClase1;
     protected int asientosClase2;
     protected int asientosClase3;
 
-    public Vuelo(int id, String aerolinea, String designator, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, float precioBaseAdulto, float precioBaseNinyio, float precioMaleta, String fecha, int asientosClase1, int asientosClase2, int asientosClase3) {
-        this.id = id;
+    public Vuelo(String aerolinea, String designator, Aeropuerto aeropuertOrigen, Aeropuerto aeropuertoDestino, float precioBaseAdulto, float precioBaseNinyio, float precioMaleta, String fecha, String hora, int asientosClase1, int asientosClase2, int asientosClase3) {
+        
         this.aerolinea = aerolinea;
         this.designator = designator;
         this.aeropuertOrigen = aeropuertOrigen;
@@ -29,6 +30,7 @@ public class Vuelo{
         this.precioBaseNinyio = precioBaseNinyio;
         this.precioMaleta = precioMaleta;
         this.fecha = fecha;
+        this.hora = hora;
         this.asientosClase1 = asientosClase1;
         this.asientosClase2 = asientosClase2;
         this.asientosClase3 = asientosClase3;
@@ -43,6 +45,7 @@ public class Vuelo{
         this.precioBaseNinyio = 0;
         this.precioMaleta = 0;
         this.fecha = "";
+        this.hora = "";
         this.asientosClase1 = 0;
         this.asientosClase2 = 0;
         this.asientosClase3 = 0;
@@ -120,6 +123,14 @@ public class Vuelo{
         this.fecha = fecha;
     }
 
+    public String getHora() {
+        return this.hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
     public int getAsientosClase1() {
         return this.asientosClase1;
     }
@@ -189,6 +200,11 @@ public class Vuelo{
         return this;
     }
 
+    public Vuelo hora(String hora) {
+        setHora(hora);
+        return this;
+    }
+
     public Vuelo asientosClase1(int asientosClase1) {
         setAsientosClase1(asientosClase1);
         return this;
@@ -216,6 +232,7 @@ public class Vuelo{
             ", precioBaseNinyio='" + getPrecioBaseNinyio() + "'" +
             ", precioMaleta='" + getPrecioMaleta() + "'" +
             ", fecha='" + getFecha() + "'" +
+            ", hora='" + getHora() + "'" +
             ", asientosClase1='" + getAsientosClase1() + "'" +
             ", asientosClase2='" + getAsientosClase2() + "'" +
             ", asientosClase3='" + getAsientosClase3() + "'" +

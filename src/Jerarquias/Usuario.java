@@ -10,8 +10,8 @@ public abstract class Usuario {
     protected String username;
     protected String password;
     
-    public Usuario(int id, String username, String password) {
-        this.id = id;
+    public Usuario(String username, String password) {
+
         this.username = username;
         this.password = password;
     }
