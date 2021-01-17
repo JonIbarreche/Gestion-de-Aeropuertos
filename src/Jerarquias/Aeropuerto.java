@@ -10,8 +10,7 @@ public class Aeropuerto {
     protected String ciudad;
     protected String pais;
 
-    public Aeropuerto(int id, String nombre, String IATA, String ciudad, String pais) {
-        this.id = id;
+    public Aeropuerto(String nombre, String IATA, String ciudad, String pais) {
         this.nombre = nombre;
         this.IATA = IATA;
         this.ciudad = ciudad;
@@ -19,7 +18,6 @@ public class Aeropuerto {
     }
 
     public Aeropuerto() {
-        this.id = 0;
         this.nombre = "";
         this.IATA = "";
         this.ciudad = "";
