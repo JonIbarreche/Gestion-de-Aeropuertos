@@ -4,6 +4,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import BDAPI.BDAPI;
+import Jerarquias.Admin;
+import Jerarquias.Cliente;
+import Jerarquias.Usuario;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -19,24 +25,18 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 public class VentanaLogin extends JFrame {
 
-	// private Image img_logo = new
-	// ImageIcon(VentanaLogin.class.getResource("res/avion.png")).getImage().getScaledInstance(50,
-	// 50, Image.SCALE_SMOOTH);
-	// private Image img_username = new
-	// ImageIcon(VentanaLogin.class.getResource("res/persona.png")).getImage().getScaledInstance(30,
-	// 30, Image.SCALE_SMOOTH);
-	// private Image img_password = new
-	// ImageIcon(VentanaLogin.class.getResource("res/lock.png")).getImage().getScaledInstance(30,
-	// 30, Image.SCALE_SMOOTH);
-	// private Image img_log_in = new
-	// ImageIcon(VentanaLogin.class.getResource("res/key.png")).getImage().getScaledInstance(30,
-	// 40, Image.SCALE_SMOOTH);
-
+	public BDAPI bd = new BDAPI();
+	public Admin admin;
+	public Cliente cliente;
+	public static String usuario;
+	public static String password;
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
@@ -96,29 +96,7 @@ public class VentanaLogin extends JFrame {
 		lblIconPassword.setLayout(null);
 
 		txtPassword = new JPasswordField();
-		txtPassword.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (String.valueOf(txtPassword.getPassword()).equals("Contraseña")) {
-					txtPassword.setEchoChar('-');
-					txtPassword.setText("");
-				} else {
-					txtPassword.selectAll();
-				}
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (String.valueOf(txtPassword.getPassword()).equals("")) {
-					txtPassword.setText("Contraseña");
-					txtPassword.setEchoChar((char) 0);
-				}
-			}
-		});
 		txtPassword.setBorder(null);
-		txtPassword.setEchoChar((char) 0);
-		txtPassword.setFont(new Font("Arial", Font.BOLD, 14));
-		txtPassword.setText("Password");
 		txtPassword.setBounds(10, 10, 170, 20);
 		lblIconPassword.add(txtPassword);
 
@@ -126,18 +104,50 @@ public class VentanaLogin extends JFrame {
 		pnlBtnVentanaLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (txtUsername.getText().equals("admin")
-						&& String.valueOf(txtPassword.getPassword()).equals("admin")) {
-					// los datos son correctos
-					lblVentanaLoginMessage.setText("");
-					JOptionPane.showMessageDialog(null, "Sesion Iniciada Correctamente");
-				} else if (txtUsername.getText().equals("") || txtUsername.getText().equals("Usuario")
-						|| String.valueOf(txtPassword.getPassword()).equals("")
-						|| String.valueOf(txtPassword.getPassword()).equals("Contraseña")) {
-					lblVentanaLoginMessage.setText("Por favor rellena los campos!");
-				} else {
-					lblVentanaLoginMessage.setText("Usuario y contraseña no coinciden");
+				String tempUsuario = txtUsername.getText();
+				String tempPassword = txtPassword.getText();
+				try {
+					List<Cliente> listaClientes = new ArrayList<Cliente>();
+					List<Admin> listaAdmins = new ArrayList<Admin>();
+					listaClientes = bd.getListaClientes();
+					listaAdmins = bd.getListaAdmins();
+					
+					for (Cliente cliente : listaClientes) {
+						if (cliente.getUsername().equals(tempUsuario)) {
+							if (cliente.getPassword().equals(tempPassword)) {
+								usuario = tempUsuario;
+								password = tempPassword;
+								VentanaInicio ventanaInicio = new VentanaInicio();
+								ventanaInicio.setVisible(true);
+								setVisible(false);
+								break;
+							}
+						}
+					}
+					for (Admin admin : listaAdmins) {
+						if (admin.getUsername().equals(tempUsuario)) {
+							if (admin.getPassword().equals(tempPassword)) {
+								usuario = tempUsuario;
+								password = tempPassword;
+								VentanaAdmin ventanaAdmin = new VentanaAdmin();
+								ventanaAdmin.setVisible(true);
+								setVisible(false);
+								break;
+							}
+						}
+					}
+					if (usuario == null || password == null) {
+						lblVentanaLoginMessage.setText("Usuario y contraseña no coinciden");
+					}
+					System.out.println(usuario);
+					System.out.println(password);
+				} catch (Exception ee) {
+					
 				}
+				// 	lblVentanaLoginMessage.setText("Por favor rellena los campos!");
+				// } else {
+				
+				
 			}
 
 			@Override
@@ -219,6 +229,7 @@ public class VentanaLogin extends JFrame {
 		lblImageCerradura.setBounds(391, 213, 32, 32);
 		contentPane.add(lblImageCerradura);
 		lblImageCerradura.setIcon(new ImageIcon(img_Cerradura));
+		
 		
 		try {
 			Files.list(new File(".").toPath()).limit(10).forEach(path -> {
