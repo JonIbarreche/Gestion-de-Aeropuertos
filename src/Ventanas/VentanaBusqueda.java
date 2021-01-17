@@ -25,6 +25,8 @@ public class VentanaBusqueda extends JFrame {
 	private JTextField txtDestino1;
 	private JTextField textFechaIda;
 	private JTextField txtFechaVuelta;
+	private JTextField textHoraIda;
+	private JTextField txtHoraVuelta;
 
     public VentanaBusqueda() {
 		setBackground(new Color(0, 139, 139));
@@ -58,7 +60,7 @@ public class VentanaBusqueda extends JFrame {
 				}
 			}
 		});
-		txtOrigen1.setText("Origen");
+		txtOrigen1.setText("");
 		txtOrigen1.setBounds(10, 10, 133, 24);
 		panelOrigen1.add(txtOrigen1);
 		txtOrigen1.setColumns(10);
@@ -69,10 +71,9 @@ public class VentanaBusqueda extends JFrame {
 		panelOrigen2.setLayout(null);
 		
 		textFechaIda = new JTextField();
-		textFechaIda.setText("Fecha_Ida");
+		textFechaIda.setText("");
 		textFechaIda.setBounds(10, 10, 133, 24);
 		panelOrigen2.add(textFechaIda);
-		textFechaIda.setColumns(10);
 		
 		JPanel panelOrigen3 = new JPanel();
 		panelOrigen3.setBounds(421, 124, 153, 44);
@@ -80,23 +81,7 @@ public class VentanaBusqueda extends JFrame {
 		panelOrigen3.setLayout(null);
 		
 		txtDestino1 = new JTextField();
-		txtDestino1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(txtDestino1.getText().equals("Destino")) {
-					txtDestino1.setText("");
-				} else {
-					txtDestino1.selectAll();
-				}		
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(txtDestino1.getText().equals("")) {
-					txtDestino1.setText("Destino");
-				}			
-			}
-		});
-		txtDestino1.setText("Destino");
+		txtDestino1.setText("");
 		txtDestino1.setBounds(10, 10, 133, 24);
 		panelOrigen3.add(txtDestino1);
 		txtDestino1.setColumns(10);
@@ -107,20 +92,20 @@ public class VentanaBusqueda extends JFrame {
 		panelOrigen4.setLayout(null);
 		
 		txtFechaVuelta = new JTextField();
-		txtFechaVuelta.setText("Fecha_Vuelta");
+		txtFechaVuelta.setText("");
 		txtFechaVuelta.setBounds(10, 10, 133, 24);
 		panelOrigen4.add(txtFechaVuelta);
-		txtFechaVuelta.setColumns(10);
 		
-		JComboBox comboBox11 = new JComboBox();
-		comboBox11.setModel(new DefaultComboBoxModel(new String[] {"9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"}));
-		comboBox11.setBounds(213, 291, 84, 21);
-		contentPane1.add(comboBox11);
-		
-		JComboBox comboBox_11 = new JComboBox();
-		comboBox_11.setModel(new DefaultComboBoxModel(new String[] {"9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"}));
-		comboBox_11.setBounds(456, 291, 84, 21);
-		contentPane1.add(comboBox_11);
+		JTextField textHoraIda = new JTextField();
+		textHoraIda.setText("");
+		textHoraIda.setBounds(456, 291, 84, 21);
+		contentPane1.add(textHoraIda);
+
+		JTextField textHoraVuelta = new JTextField();
+		// txtHoraVuelta.setText(VentanaInicio.vueloVuelta.getHora());
+		txtHoraVuelta.setText("ddddd");
+		textHoraVuelta.setBounds(215, 291, 84, 21);
+		contentPane1.add(textHoraVuelta);
 		
 		JPanel panelCompra = new JPanel();
 		panelCompra.setBackground(new Color(47, 79, 79));
