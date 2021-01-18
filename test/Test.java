@@ -1,29 +1,23 @@
 import java.awt.Dimension;
-
+import org.junit.jupiter.api.Test;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class Test {
+import BDAPI.BDAPI;
+import Jerarquias.Cliente;
 
-    public static void main(String... args) {
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        for (int i = 0; i < 10; i++) {
-            panel.add(new JButton("Hello-" + i));
-        }
-        JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        scrollPane.setBounds(50, 30, 300, 50);
-        JPanel contentPane = new JPanel(null);
-        contentPane.setPreferredSize(new Dimension(500, 400));
-        contentPane.add(scrollPane);
-        frame.setContentPane(contentPane);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setVisible(true);
+class Test {
+    BDAPI bd = new BDAPI();
+    
+    @Test
+    public void clienteEspecifico() {
+        Cliente clienteReal = new Cliente("ssc1999", "1234", "72858016L", "sergio", "Salgado", "ssc1099.csmm@gmail.com", "67867894");
+        Cliente clienteBd = bd.getClienteEspecifico(ssc1999);
+
+        boolean iguales = (clienteReal).equals(clienteBd);
+		assertTrue(iguales);
     }
 }
 
