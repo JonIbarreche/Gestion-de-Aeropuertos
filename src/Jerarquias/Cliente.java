@@ -91,7 +91,11 @@ public class Cliente extends Usuario{
         setTelefono(telefono);
         return this;
     }
-
+    @Override
+	public boolean equals(Object objeto) {
+		Cliente c = (Cliente) objeto;
+		return this.username == c.username && this.password == c.password && this.dni == c.dni && this.nombre == c.nombre && this.apellido == c.apellido && this.email == c.email && this.telefono == c.telefono ;
+	}
 
     @Override
     public String toString() {

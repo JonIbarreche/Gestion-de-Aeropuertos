@@ -2,15 +2,29 @@ package Ventanas;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AttributeSet.ColorAttribute;
+
+import BDAPI.BDAPI;
+import BDAPI.DBException;
+import Jerarquias.Vuelo;
 
 public class VentanaAdmin extends JFrame {
     
@@ -40,6 +54,8 @@ public class VentanaAdmin extends JFrame {
     private JButton botonPasajeros;
     private JButton botonGuardar;
 
+    private BDAPI bd = new BDAPI();
+
     public VentanaAdmin(){
         
         Container cp = getContentPane();
@@ -64,7 +80,15 @@ public class VentanaAdmin extends JFrame {
         panelEditar.setVisible(false);
         panelEditar.setBounds(0 + insets.left, 0 +insets.top, frameSize.width, frameSize.height - 40);
           
-        // //PanelAdmin
+        JMenuBar menu = new JMenuBar();
+        JMenu menuOpciones= new JMenu("Opciones");
+        JMenuItem importar = new JMenuItem("Importar");
+        
+        menuOpciones.add(importar);
+        menu.add(menuOpciones);
+        setJMenuBar(menu);
+        menu.setVisible(true);
+
         panelMapa = new JPanel();
         panelMapa.setLayout(null);
         panelMapa.setBackground(Color.RED);
@@ -92,6 +116,41 @@ public class VentanaAdmin extends JFrame {
         });
         cp.add(panelAdmin);
         //PanelEditar
+
+        // importar.addActionListener(new ActionListener() {
+			
+		// 	@Override
+		// 	public void actionPerformed(ActionEvent arg0) {
+		// 		JFileChooser fileChooser = new JFileChooser();
+		// 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Ficheros CSV", "csv");
+		// 		fileChooser.setFileFilter(filter); 	
+                
+        //         File selectedFile = fileChooser.getSelectedFile();                        
+        //         bd.editarVuelo(readData(selectedFile));
+        //         updateUI();
+		// 	}
+		// });
+
+        // public ArrayList<Vuelo> readData(File file) throws IOException { 
+        //     List<Vuelo> listaVuelos = new ArrayList<>();
+        //     try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+        //         String line = "";
+        //         while ((line = br.readLine()) != null) {  
+        //             // lee el .csv separado por comas
+        //             String[] vueloCsv = line.split(",");  
+             
+        //             // Crea el objeto estrella y lo guarda  
+        //             Vuelo vuelo = new Vuelo(parseString(vueloCsv[0]), parseString(vueloCsv[1]), vueloCsv[2], vueloCsv[3], parseFloat(vueloCsv[4]), parseFloat(vueloCsv[5]), parseFloat(vueloCsv[6]), parseString(vueloCsv[7]), parseString(vueloCsv[8]), parseInt(vueloCsv[9]), parseInt(vueloCsv[10]), parseInt(vueloCsv[11]));  
+    
+        //             // Añade el objeto a la lista  
+        //             listaVuelos.add(vuelo);         
+        //      } 
+        //     } catch (IOException e) {
+        //         JOptionPane.showMessageDialog(AstronomicViewer.this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        //     }
+        //     return listaVuelos;
+        // }
+
         
         panelEditarIzq = new JPanel(new GridLayout(5,2));
         panelEditarIzq.setVisible(true);
