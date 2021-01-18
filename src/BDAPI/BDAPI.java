@@ -371,7 +371,6 @@ public class BDAPI {
                         pstId.setInt(2, tmpBillete.getVuelo().getId());
                         ResultSet rsID = pstId.executeQuery();
                         tmpBillete.setId(rsID.getInt("id"));
-
                         
                     }
                 } catch (SQLException e) {
@@ -382,7 +381,7 @@ public class BDAPI {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return billete;
+        return tmpBillete;
     }
 
     // Eliminar aeropuerto
@@ -769,6 +768,10 @@ public class BDAPI {
                 
                 vuelo.setId(rs.getInt("id"));
 
+                pstExisteAeropuertoOrigen.close();
+                pstExisteAeropuertoDestino.close();
+                pst.close();
+
                 return vuelo;
 
             }
@@ -793,6 +796,7 @@ public class BDAPI {
                     rsCliente.getString("email"), rsCliente.getString("telefono"));
             
             clienteEspecifico.setId(rsCliente.getInt("id"));
+            pstCliente.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

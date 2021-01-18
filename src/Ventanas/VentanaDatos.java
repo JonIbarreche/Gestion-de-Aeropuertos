@@ -140,6 +140,7 @@ public class VentanaDatos extends JFrame {
                                 VentanaInicio.opcionesVuelo[0], VentanaInicio.opcionesVuelo[1],
                                 VentanaInicio.opcionesVuelo[2], VentanaInicio.opcionesVuelo[3], precioIda),
                         VentanaLogin.usuario);
+                System.out.println("Billete editado");
                 bd.editarBillete(
                         new Billete(bd.getClienteEspecifico(VentanaLogin.usuario), VentanaInicio.vueloVuelta,
                                 VentanaInicio.opcionesVuelo[0], VentanaInicio.opcionesVuelo[1],
