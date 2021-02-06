@@ -105,7 +105,7 @@ public class VentanaLogin extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String tempUsuario = txtUsername.getText();
-				String tempPassword = txtPassword.getText();
+				String tempPassword = String.valueOf(txtPassword.getPassword());
 				try {
 					List<Cliente> listaClientes = new ArrayList<Cliente>();
 					List<Admin> listaAdmins = new ArrayList<Admin>();
@@ -139,8 +139,6 @@ public class VentanaLogin extends JFrame {
 					if (usuario == null || password == null) {
 						lblVentanaLoginMessage.setText("Usuario y contraseña no coinciden");
 					}
-					System.out.println(usuario);
-					System.out.println(password);
 				} catch (Exception ee) {
 					
 				}
