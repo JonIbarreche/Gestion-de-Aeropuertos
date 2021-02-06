@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,9 +18,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
 import BDAPI.BDAPI;
@@ -38,7 +42,9 @@ public class VentanaAdmin extends JFrame {
     private boolean hilo;
     
     //PanelAdmin
-    private JPanel panelTabla;
+    private JScrollPane panelScroll;
+    private JTable tabla;
+    private DefaultTableModel model;
     private JPanel panelMapa;   
     private JButton botonEditar;
     private JButton botonBorrar;
@@ -89,6 +95,24 @@ public class VentanaAdmin extends JFrame {
         setJMenuBar(menu);
         menu.setVisible(true);
 
+        String[] columnas = { "Origen", "Destino", "Fecha", "Hora", "Asientos Disponibles"};
+        model = new DefaultTableModel(null, columnas);
+        
+        List<Vuelo> listaVuelos = bd.getListaVuelos();
+                
+        for (Vuelo vuelo : listaVuelos) {
+            Object[] i = { vuelo.getAeropuertOrigen().getCiudad(), vuelo.getAeropuertoDestino().getCiudad(),
+                    vuelo.getFecha(), vuelo.getHora(),
+                    String.valueOf(vuelo.getAsientosClase1() + vuelo.getAsientosClase2() + vuelo.getAsientosClase3()) };
+            model.addRow(i);
+            System.out.println(vuelo.getAeropuertOrigen().getCiudad());
+        }
+                
+        tabla = new JTable(model);
+
+        panelScroll = new JScrollPane();
+        panelScroll.setViewportView(tabla);
+
         panelMapa = new JPanel();
         panelMapa.setLayout(null);
         panelMapa.setBackground(Color.RED);
@@ -96,18 +120,25 @@ public class VentanaAdmin extends JFrame {
         botonBorrar =  new JButton("Borrar");
         botonEditar = new JButton("Editar");
     
-        botonEditar.setBounds(700 + insetsAdmin.left, 525 +insetsAdmin.top, 80, 40);
-        botonBorrar.setBounds(550 + insetsAdmin.left, 525 +insetsAdmin.top, 80, 40);
-        panelMapa.setBounds(450 + insetsAdmin.left, 40 + insetsAdmin.top, 450, 450);
-        panelMapa.setBackground(Color.CYAN);
+        botonEditar.setBounds(590 + insetsAdmin.left, 525 +insetsAdmin.top, 80, 40);
+        botonBorrar.setBounds(740 + insetsAdmin.left, 525 + insetsAdmin.top, 80, 40);
+        panelScroll.setBounds(10 + insetsAdmin.left, 40 + insetsAdmin.top, 460, 450);
+        panelMapa.setBounds(520 + insetsAdmin.left, 40 + insetsAdmin.top, 400, 450);
+
+
         
         panelAdmin.add(botonEditar);
         panelAdmin.add(botonBorrar);
+        panelAdmin.add(panelScroll);
         panelAdmin.add(panelMapa);
         //panelAdmin.add(panelTabla);
         
         
-        botonBorrar.addActionListener(new ActionListener() {
+        //Vuelos de la tabla 
+        
+
+
+        botonEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 panelAdmin.setVisible(false);
                 panelEditar.setVisible(true);
