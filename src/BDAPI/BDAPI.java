@@ -256,7 +256,7 @@ public class BDAPI {
 
                     while (rs.next()) {
                         if (rs.getInt("id") == tmpVuelo.getId()) {
-                            String sqlUpdate = "UPDATE vuelos SET (aerolinea, designator, aeropuerto_origen, aeropuerto_destino, precio_base_adulto, precio_base_ninyio, precio_maleta, fecha, hora, asientos_clase_1, asientos_clase_2, asientos_clase_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            String sqlUpdate = "UPDATE vuelos SET (aerolinea, designator, aeropuerto_origen, aeropuerto_destino, precio_base_adulto, precio_base_ninyio, precio_maleta, fecha, hora, asientos_clase_1, asientos_clase_2, asientos_clase_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                             PreparedStatement pst = conn.prepareStatement(sqlUpdate);
 
                             pst.setString(1, tmpVuelo.getAerolinea());
@@ -370,6 +370,7 @@ public class BDAPI {
                         pstId.setInt(1, tmpBillete.getCliente().getId());
                         pstId.setInt(2, tmpBillete.getVuelo().getId());
                         ResultSet rsID = pstId.executeQuery();
+                        pstId.close();
                         tmpBillete.setId(rsID.getInt("id"));
                         
                     }
@@ -600,18 +601,15 @@ public class BDAPI {
                 String sqlAeropuertoOrigen = "SELECT * FROM aeropuertos WHERE id = ?";
                 String sqlAeropuertoDestino = "SELECT * FROM aeropuertos WHERE id = ?";
 
-                ResultSet rsAeropuertoOrigen = stmt.executeQuery(sqlAeropuertoOrigen);
-                ResultSet rsAeropuertoDestino = stmt.executeQuery(sqlAeropuertoDestino);
-
                 PreparedStatement pstAeropuertoOrigen = conn.prepareStatement(sqlAeropuertoOrigen);
                 PreparedStatement pstAeropuertoDestino = conn.prepareStatement(sqlAeropuertoDestino);
-
-                pstAeropuertoOrigen.setInt(1, rs.getInt("aeropuertoOrigen"));
-                pstAeropuertoDestino.setInt(1, rs.getInt("aeropuertoDestino"));
-
-                rsAeropuertoOrigen = pstAeropuertoOrigen.executeQuery();
-                rsAeropuertoDestino = pstAeropuertoDestino.executeQuery();
-
+                
+                pstAeropuertoOrigen.setInt(1, rs.getInt("aeropuerto_origen"));
+                pstAeropuertoDestino.setInt(1, rs.getInt("aeropuerto_destino"));
+                
+                ResultSet rsAeropuertoOrigen = pstAeropuertoOrigen.executeQuery();
+                ResultSet rsAeropuertoDestino = pstAeropuertoDestino.executeQuery();
+                
                 listaVuelos.add(new Vuelo(rs.getString("aerolinea"), rs.getString("designator"),
                         new Aeropuerto(rsAeropuertoOrigen.getString("nombre"), rsAeropuertoOrigen.getString("IATA"),
                                 rsAeropuertoOrigen.getString("ciudad"), rsAeropuertoOrigen.getString("pais")),
@@ -771,7 +769,7 @@ public class BDAPI {
                 pstExisteAeropuertoOrigen.close();
                 pstExisteAeropuertoDestino.close();
                 pst.close();
-
+                System.out.println("devuelve Vuelo");
                 return vuelo;
 
             }
@@ -783,18 +781,18 @@ public class BDAPI {
 
     public Cliente getClienteEspecifico(String cliente) {
         Cliente clienteEspecifico = new Cliente();
-        
+
         try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
-            
+
             String sqlCliente = "SELECT * FROM clientes WHERE username = ?";
             PreparedStatement pstCliente = conn.prepareStatement(sqlCliente);
             pstCliente.setString(1, cliente);
             ResultSet rsCliente = pstCliente.executeQuery();
-            
+
             clienteEspecifico = new Cliente(rsCliente.getString("username"), rsCliente.getString("password"),
                     rsCliente.getString("dni"), rsCliente.getString("nombre"), rsCliente.getString("apellido"),
                     rsCliente.getString("email"), rsCliente.getString("telefono"));
-            
+
             clienteEspecifico.setId(rsCliente.getInt("id"));
             pstCliente.close();
         } catch (SQLException e) {
@@ -803,6 +801,49 @@ public class BDAPI {
         return clienteEspecifico;
     }
 
+    public Admin getAdminEspecifico(String admin) {
+        Admin adminEspecifico = new Admin();
+
+        try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
+
+            String sqlAdmin = "SELECT * FROM admins WHERE username = ?";
+            PreparedStatement pstAdmin = conn.prepareStatement(sqlAdmin);
+            pstAdmin.setString(1, admin);
+            ResultSet rsAdmin = pstAdmin.executeQuery();
+
+            adminEspecifico = new Admin(rsAdmin.getString("username"), rsAdmin.getString("password"),
+                    rsAdmin.getInt("nivel"));
+
+            adminEspecifico.setId(rsAdmin.getInt("id"));
+            pstAdmin.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return adminEspecifico;
+    }
+    
+    public List<Cliente> getClientesVuelo(Vuelo vuelo) {
+        Cliente clienteVuelo = new Cliente();
+        List<Cliente> listaClientesVuelo = new ArrayList<Cliente>();
+
+        try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
+
+            String sqlVuelo = "SELECT * FROM billetes WHERE vuelo = ?";
+            PreparedStatement pstVuelo = conn.prepareStatement(sqlVuelo);
+            pstVuelo.setInt(1, vuelo.getId());
+            ResultSet rsCliente = pstVuelo.executeQuery();
+
+            while (rsCliente.next()) {
+                listaClientesVuelo.add(new Cliente(rsCliente.getString("username"), rsCliente.getString("password"),
+                rsCliente.getString("dni"), rsCliente.getString("nombre"), rsCliente.getString("apellido"),
+                rsCliente.getString("email"), rsCliente.getString("telefono")));
+            }
+            pstVuelo.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return listaClientesVuelo;
+    }
     // public Vuelo getUsuarioEspecifico(String usuario, String password) {
     //     try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
     //         System.out.println("rula");
