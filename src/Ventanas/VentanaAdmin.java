@@ -2,12 +2,16 @@ package Ventanas;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -27,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
 import BDAPI.BDAPI;
-import BDAPI.DBException;
+import Jerarquias.Cliente;
 import Jerarquias.Vuelo;
 
 public class VentanaAdmin extends JFrame {
@@ -56,9 +60,19 @@ public class VentanaAdmin extends JFrame {
     private JTextField textDestino;
     private JTextField textFecha;
     private JTextField textHora;
-    private JTextField textPasajeros;
+    private JTextField textAdulto;
+    private JTextField textNinyio;
+    private JTextField textMaleta;
     private JButton botonPasajeros;
     private JButton botonGuardar;
+
+    //PanelPasajeros
+    private JScrollPane panelScrollPasajeros;
+    private JPanel panelPasajeros;
+    private JTable tablaPasajeros;
+    private DefaultTableModel modelPasajeros;
+      
+    private Vuelo vueloAdmin;
 
     private BDAPI bd = new BDAPI();
 
@@ -80,17 +94,25 @@ public class VentanaAdmin extends JFrame {
         panelAdmin.setVisible(true);
         panelAdmin.setBounds(0 + insets.left, 0 +insets.top, frameSize.width, frameSize.height);
         insetsAdmin = panelAdmin.getInsets();
+        panelAdmin.setBackground(new Color(0, 139, 139));
 
         panelEditar = new JPanel();
         panelEditar.setLayout(new BorderLayout());
         panelEditar.setVisible(false);
-        panelEditar.setBounds(0 + insets.left, 0 +insets.top, frameSize.width, frameSize.height - 40);
+        panelEditar.setBounds(0 + insets.left, 0 + insets.top, frameSize.width - 100, frameSize.height - 100);
+        panelEditar.setBackground(new Color(0, 139, 139));
+
+        panelPasajeros = new JPanel();
+        panelPasajeros.setLayout(null);
+        panelPasajeros.setVisible(true);
+        panelPasajeros.setBounds(0 + insets.left, 0 +insets.top, frameSize.width, frameSize.height);
+        panelPasajeros.setBackground(new Color(0, 139, 139));
           
         JMenuBar menu = new JMenuBar();
         JMenu menuOpciones= new JMenu("Opciones");
-        JMenuItem importar = new JMenuItem("Importar");
+        JMenuItem exportar = new JMenuItem("Exportar");
         
-        menuOpciones.add(importar);
+        menuOpciones.add(exportar);
         menu.add(menuOpciones);
         setJMenuBar(menu);
         menu.setVisible(true);
@@ -125,8 +147,33 @@ public class VentanaAdmin extends JFrame {
         panelScroll.setBounds(10 + insetsAdmin.left, 40 + insetsAdmin.top, 460, 450);
         panelMapa.setBounds(520 + insetsAdmin.left, 40 + insetsAdmin.top, 400, 450);
 
-
-        
+        //////////////////////////////////////////////////////////////
+        // class Imagen extends javax.swing.JPanel {
+     
+        //     public Imagen() {
+        //     this.setSize(400, 450); //se selecciona el tamaño del panel
+        //     }
+            
+        //     //Se crea un método cuyo parámetro debe ser un objeto Graphics
+            
+        //     public void paint(Graphics grafico) {
+        //     Dimension height = getSize();
+            
+        //     //Se selecciona la imagen que tenemos en el paquete de la //ruta del programa
+            
+        //     ImageIcon Img = new ImageIcon(getClass().getResource("/Images/Diagrama.png")); 
+            
+        //     //se dibuja la imagen que tenemos en el paquete Images //dentro de un panel
+            
+        //     grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
+            
+        //     setOpaque(false);
+        //     super.paintComponent(grafico);
+        //     }
+        //     }
+        //////////////////////////////////////////////////////////////////
+        // Imagen mapa = new Imagen();
+        // panelMapa.add(mapa);
         panelAdmin.add(botonEditar);
         panelAdmin.add(botonBorrar);
         panelAdmin.add(panelScroll);
@@ -136,19 +183,62 @@ public class VentanaAdmin extends JFrame {
         
         //Vuelos de la tabla 
         
-
-
+        
         botonEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 panelAdmin.setVisible(false);
                 panelEditar.setVisible(true);
                 
+                final int fila = tabla.getSelectedRow();
+                vueloAdmin = bd.getVueloEspecifico((String) tabla.getValueAt(fila, 0), (String)tabla.getValueAt(fila, 1),
+                        (String) tabla.getValueAt(fila, 2));
+                System.out.println(vueloAdmin.toString());                 
             }
         });
+
+        botonBorrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                final int fila = tabla.getSelectedRow();
+                vueloAdmin = bd.getVueloEspecifico((String) tabla.getValueAt(fila, 0), (String)tabla.getValueAt(fila, 1),
+                        (String) tabla.getValueAt(fila, 2));
+                                                
+                if (bd.getAdminEspecifico(VentanaLogin.usuario).getNivel() == 1) {
+                    bd.eliminarVuelo(vueloAdmin);
+                } else {
+                    System.out.println("Permisos insuficientes");
+                }
+
+            }
+        });
+        exportar.addActionListener(new ActionListener() {@Override
+        public void actionPerformed(ActionEvent e) {
+                try {
+                    File file = new File("vuelos.csv");
+                    FileWriter writer = new FileWriter(file);
+                    BufferedWriter buff = new BufferedWriter(writer);
+                    buff.write("Vuelos actuales: ");
+                    buff.newLine();
+
+                    for (Vuelo vuelo : listaVuelos) {
+                        buff.write(vuelo.getAeropuertOrigen().getCiudad() + ", " + vuelo.getAeropuertoDestino().getCiudad() + ", " + vuelo.getFecha() + ", " + vuelo.getHora() + ", " + String.valueOf(vuelo.getAsientosClase1() + vuelo.getAsientosClase2() + vuelo.getAsientosClase3()));
+                        buff.newLine();
+                    }
+
+                    buff.flush();
+                    buff.close();
+                    writer.close();
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            
+            }
+        });
+
         cp.add(panelAdmin);
         //PanelEditar
 
-        // importar.addActionListener(new ActionListener() {
+        // exportar.addActionListener(new ActionListener() {
 			
 		// 	@Override
 		// 	public void actionPerformed(ActionEvent arg0) {
@@ -188,37 +278,81 @@ public class VentanaAdmin extends JFrame {
 
         panelEditarAbajo = new JPanel(new GridLayout(2,1));
         panelEditarAbajo.setVisible(true);
-
-        textOrigen = new JTextField(20);
-        JLabel labelOrigen = new JLabel("Origen: ");
-        textDestino = new JTextField(20);
-        JLabel labelDestino= new JLabel("Destion: ");
+        
+        
         textFecha = new JTextField(20);
         JLabel labelFecha = new JLabel("Fecha: ");
         textHora = new JTextField(20);
         JLabel labelHora = new JLabel("Hora: ");
-        textPasajeros = new JTextField(20);
-        JLabel labelPasajeros = new JLabel("Número de pasajeros: ");
+        textAdulto = new JTextField(20);
+        JLabel labelAdulto = new JLabel("Precio Adulto");
+        textNinyio = new JTextField(20);
+        JLabel labelNinyio = new JLabel("Precio Ninyio");
+        textMaleta = new JTextField(20);
+        JLabel labelMaleta = new JLabel("Precio Maleta");
         botonPasajeros = new JButton("Pasajeros");
         botonGuardar = new JButton("Guardar");
+        
+        //  textOrigen.setText(vueloAdmin.getAeropuertOrigen().getCiudad()); 
+        //  textDestino.setText(vueloAdmin.getAeropuertoDestino().getCiudad());
+        //  textFecha.setText(vueloAdmin.getFecha());  
+        //  textHora.setText(vueloAdmin.getHora());
 
-        panelEditarIzq.add(labelOrigen);
-        panelEditarIzq.add(textOrigen);
-        panelEditarIzq.add(labelDestino);
-        panelEditarIzq.add(textDestino);
+        botonGuardar.addActionListener(new ActionListener() {@Override
+        public void actionPerformed(ActionEvent e) {
+                vueloAdmin.setFecha(textFecha.getText());
+                vueloAdmin.setHora(textHora.getText());
+                vueloAdmin.setPrecioBaseAdulto((float) Double.parseDouble(textAdulto.getText()));
+                vueloAdmin.setPrecioBaseNinyio((float) Double.parseDouble(textNinyio.getText()));
+                vueloAdmin.setPrecioMaleta((float)Double.parseDouble(textMaleta.getText()));
+                bd.editarVuelo(vueloAdmin);
+            }
+        });
+         
         panelEditarIzq.add(labelFecha);
         panelEditarIzq.add(textFecha);
         panelEditarIzq.add(labelHora);
         panelEditarIzq.add(textHora);
-        panelEditarIzq.add(labelPasajeros);
-        panelEditarIzq.add(textPasajeros);
+        panelEditarIzq.add(labelAdulto);
+        panelEditarIzq.add(textAdulto);
+        panelEditarIzq.add(labelNinyio);
+        panelEditarIzq.add(textNinyio);
+        panelEditarIzq.add(labelMaleta);
+        panelEditarIzq.add(textMaleta);
 
         panelEditarAbajo.add(botonPasajeros);
         panelEditarAbajo.add(botonGuardar);
         
         panelEditar.add(panelEditarIzq, BorderLayout.WEST);
-        panelEditar.add(panelEditarAbajo, BorderLayout.SOUTH);
+        panelEditar.add(panelEditarAbajo, BorderLayout.EAST);
 
-         cp.add(panelEditar);
+        botonPasajeros.addActionListener(new ActionListener() {@Override
+        public void actionPerformed(ActionEvent e) {
+                panelEditar.setVisible(false);
+                panelPasajeros.setVisible(true);
+        }});
+        
+
+        cp.add(panelEditar);
+
+        // String[] columnasPasajeros = { "Dni", "Username", "Nombre", "Apellido", "Email"};
+        // modelPasajeros = new DefaultTableModel(null, columnasPasajeros);
+        
+        // List<Cliente> listaClientes = bd.getClientesVuelo(vueloAdmin);
+                
+        // for (Cliente cliente : listaClientes) {
+        //     Object[] i = { cliente.getDni(), cliente.getUsername(), cliente.getNombre(),
+        //             cliente.getApellido(), cliente.getEmail() };
+        //     model.addRow(i);
+        // }
+                
+        // tablaPasajeros = new JTable(modelPasajeros);
+
+        // panelScrollPasajeros = new JScrollPane();
+        // panelScrollPasajeros.setViewportView(tablaPasajeros);
+
+        // panelPasajeros.add(panelScrollPasajeros);
+
+        // cp.add(panelPasajeros);
     }
 }
