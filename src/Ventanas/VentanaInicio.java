@@ -245,53 +245,6 @@ public class VentanaInicio extends JFrame {
                 }
             }
         });
-
-    //PANEL DATOS
-        
-    // insets = panelInicio.getInsets();
-    
-
-    // textOrigenDatos = new JTextField(20);
-    // textDestinoDatos = new JTextField(20);
-    // textFechaIdaDatos = new JTextField(10);
-    // textFechaVueltaDatos = new JTextField(10);
-    // textHoraIdaDatos = new JTextField(10);
-    // textHoraVueltaDatos = new JTextField(10);
-    // botonComprar = new JButton("Comprar");
-    
-    // if (opcionesVuelo[4] == 1) {
-        
-    //     textOrigenDatos.setText(vueloIda.getAeropuertOrigen().getCiudad());
-    //     textDestinoDatos.setText(vueloIda.getAeropuertOrigen().getCiudad());
-    //     textFechaIdaDatos.setText(vueloIda.getFecha());
-    //     textHoraIdaDatos = new JTextField(vueloIda.getHora());
-
-    // } else {
-
-    //     textOrigenDatos.setText(vueloIda.getAeropuertOrigen().getCiudad());
-    //     textDestinoDatos.setText(vueloIda.getAeropuertOrigen().getCiudad());
-    //     textFechaIdaDatos.setText(vueloIda.getFecha());
-    //     textFechaVueltaDatos.setText(vueloVuelta.getFecha());
-    //     textHoraIdaDatos.setText(vueloIda.getHora());
-    //     textHoraVueltaDatos.setText(vueloVuelta.getHora());
-    // }
-    
-    // textOrigenDatos.setBounds(200 + insets.left, 275 + insets.top, 240, 40);
-    // textDestinoDatos.setBounds(475 + insets.left, 275 + insets.top, 240, 40);
-    // textOrigenDatos.setBounds(200 + insets.left, 340 + insets.top, 240, 40);
-    // textDestinoDatos.setBounds(475 + insets.left, 340 + insets.top, 240, 40);
-    // textFechaIdaDatos.setBounds(275 + insets.left, 405 + insets.top, 95, 40);
-    // textFechaVueltaDatos.setBounds(550 + insets.left, 405 + insets.top, 95, 40);
-    // botonComprar.setBounds(410 + insets.left, 470 + insets.top, 95, 40);
-    
-    // panelDatos.add(textOrigenDatos);
-    // panelDatos.add(textDestinoDatos);
-    // panelDatos.add(textFechaIdaDatos);
-    // panelDatos.add(textFechaVueltaDatos);
-    // panelDatos.add(textHoraIdaDatos);
-    // panelDatos.add(textHoraVueltaDatos);
-    // panelDatos.add(botonComprar);
-
     add(panelInicio);
     // add(panelDatos);
     }

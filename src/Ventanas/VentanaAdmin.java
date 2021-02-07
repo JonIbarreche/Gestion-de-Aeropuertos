@@ -148,29 +148,12 @@ public class VentanaAdmin extends JFrame {
         panelMapa.setBounds(520 + insetsAdmin.left, 40 + insetsAdmin.top, 400, 450);
 
         //////////////////////////////////////////////////////////////
-        // class Imagen extends javax.swing.JPanel {
-     
-        //     public Imagen() {
-        //     this.setSize(400, 450); //se selecciona el tamaño del panel
-        //     }
-            
-        //     //Se crea un método cuyo parámetro debe ser un objeto Graphics
-            
-        //     public void paint(Graphics grafico) {
-        //     Dimension height = getSize();
-            
-        //     //Se selecciona la imagen que tenemos en el paquete de la //ruta del programa
-            
-        //     ImageIcon Img = new ImageIcon(getClass().getResource("/Images/Diagrama.png")); 
-            
-        //     //se dibuja la imagen que tenemos en el paquete Images //dentro de un panel
-            
-        //     grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
-            
-        //     setOpaque(false);
-        //     super.paintComponent(grafico);
-        //     }
-        //     }
+        Image imgMapa = new ImageIcon("Gestion_Aeropuertos" + File.separator + "img" + File.separator + "mapa.png")
+                .getImage();
+        JLabel lblImagenMapa = new JLabel();
+		lblImagenMapa.setIcon(new ImageIcon(imgMapa));
+		lblImagenMapa.setBounds(520 + insetsAdmin.left, 40 + insetsAdmin.top, 400, 450);
+		panelMapa.add(lblImagenMapa);
         //////////////////////////////////////////////////////////////////
         // Imagen mapa = new Imagen();
         // panelMapa.add(mapa);
@@ -191,8 +174,7 @@ public class VentanaAdmin extends JFrame {
                 
                 final int fila = tabla.getSelectedRow();
                 vueloAdmin = bd.getVueloEspecifico((String) tabla.getValueAt(fila, 0), (String)tabla.getValueAt(fila, 1),
-                        (String) tabla.getValueAt(fila, 2));
-                System.out.println(vueloAdmin.toString());                 
+                        (String) tabla.getValueAt(fila, 2));              
             }
         });
 
@@ -205,7 +187,7 @@ public class VentanaAdmin extends JFrame {
                 if (bd.getAdminEspecifico(VentanaLogin.usuario).getNivel() == 1) {
                     bd.eliminarVuelo(vueloAdmin);
                 } else {
-                    System.out.println("Permisos insuficientes");
+                    logger.Log.getLOGGER().info("No tiene permisos suficientes");
                 }
 
             }

@@ -749,7 +749,6 @@ public class BDAPI {
     //
     public Vuelo getVueloEspecifico(String origen, String destino, String fecha) {
         try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
-            System.out.println("rula");
             String sqlExisteAeropuertoOrigen = "SELECT * FROM aeropuertos WHERE ciudad = ?";
             String sqlExisteAeropuertoDestino = "SELECT * FROM aeropuertos WHERE ciudad = ?";
             String sqlExisteVuelo = "SELECT * FROM vuelos WHERE aeropuerto_origen = ? AND aeropuerto_destino = ? AND fecha = ?";
@@ -767,9 +766,7 @@ public class BDAPI {
             ResultSet rsAeropuertoDestino = pstExisteAeropuertoDestino.executeQuery();
 
             int idAeropuertoOrigen = rsAeropuertoOrigen.getInt("id");
-            System.out.println("ID Origen: " + idAeropuertoOrigen);
             int idAeropuertoDestino = rsAeropuertoDestino.getInt("id");
-            System.out.println("ID Destino: " + idAeropuertoDestino);
 
             PreparedStatement pst = conn.prepareStatement(sqlExisteVuelo);
 
@@ -800,8 +797,6 @@ public class BDAPI {
                 pstExisteAeropuertoOrigen.close();
                 pstExisteAeropuertoDestino.close();
                 pst.close();
-                System.out.println("devuelve Vuelo");
-
                 return vuelo;
             }
         } catch (SQLException e) {
