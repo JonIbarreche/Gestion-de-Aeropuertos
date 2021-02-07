@@ -25,6 +25,13 @@ public class Admin extends Usuario {
         setNivel(nivel);
         return this;
     }
+    
+    @Override
+	 public boolean equals(Object objeto) {
+	 	Admin a = (Admin) objeto;
+	 	return this.username == a.username && this.password == a.password && this.nivel == a.nivel;
+	 }
+
 
     @Override
     public String toString() {

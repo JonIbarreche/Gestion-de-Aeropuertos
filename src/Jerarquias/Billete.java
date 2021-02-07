@@ -140,7 +140,17 @@ public class Billete {
         return this;
     }
 
-   
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Billete)) {
+            return false;
+        }
+        Billete billete = (Billete) o;
+        return id == billete.id && Objects.equals(cliente, billete.cliente) && Objects.equals(vuelo, billete.vuelo) && numPasajerosAdultos == billete.numPasajerosAdultos && numPasajerosNinyios == billete.numPasajerosNinyios && numMaletas == billete.numMaletas && clase == billete.clase && precio == billete.precio;
+    }
+
     @Override
     public String toString() {
         return "{" +

@@ -89,6 +89,18 @@ public class Aeropuerto {
         return this;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Aeropuerto)) {
+            return false;
+        }
+        Aeropuerto aeropuerto = (Aeropuerto) o;
+        return id == aeropuerto.id && Objects.equals(nombre, aeropuerto.nombre) && Objects.equals(IATA, aeropuerto.IATA) && Objects.equals(ciudad, aeropuerto.ciudad) && Objects.equals(pais, aeropuerto.pais);
+    }
+
     @Override
     public String toString() {
         return "{" +

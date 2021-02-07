@@ -220,6 +220,20 @@ public class Vuelo{
         return this;
     }
 
+
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Vuelo)) {
+            return false;
+        }
+        Vuelo vuelo = (Vuelo) o;
+        return id == vuelo.id && Objects.equals(aerolinea, vuelo.aerolinea) && Objects.equals(designator, vuelo.designator) && Objects.equals(aeropuertOrigen, vuelo.aeropuertOrigen) && Objects.equals(aeropuertoDestino, vuelo.aeropuertoDestino) && precioBaseAdulto == vuelo.precioBaseAdulto && precioBaseNinyio == vuelo.precioBaseNinyio && precioMaleta == vuelo.precioMaleta && Objects.equals(fecha, vuelo.fecha) && Objects.equals(hora, vuelo.hora) && asientosClase1 == vuelo.asientosClase1 && asientosClase2 == vuelo.asientosClase2 && asientosClase3 == vuelo.asientosClase3;
+    }
+
+   
     @Override
     public String toString() {
         return "{" +
