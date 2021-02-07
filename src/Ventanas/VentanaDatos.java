@@ -41,6 +41,7 @@ public class VentanaDatos extends JFrame {
     private JTextField textFechaVueltaDatos;
     private JTextField textHoraIdaDatos;
     private JTextField textHoraVueltaDatos;
+    private JLabel labelPrecio;
 
     private JButton botonComprar;
 
@@ -72,6 +73,22 @@ public class VentanaDatos extends JFrame {
     setJMenuBar(menu);
     menu.setVisible(true);
         
+    if (VentanaInicio.opcionesVuelo[4] == 1) {
+            precioIda = (VentanaInicio.vueloIda.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[0])
+                    + (VentanaInicio.vueloIda.getPrecioBaseNinyio() * VentanaInicio.opcionesVuelo[1]);
+        
+            precioTotal = precioIda;
+            
+    } else {
+        precioIda = (VentanaInicio.vueloIda.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[0])
+                + (VentanaInicio.vueloIda.getPrecioBaseNinyio() * VentanaInicio.opcionesVuelo[1]);
+        
+        precioVuelta = (VentanaInicio.vueloVuelta.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[0])
+                + (VentanaInicio.vueloVuelta.getPrecioBaseNinyio() * VentanaInicio.opcionesVuelo[1]);
+        
+        precioTotal = precioIda + precioVuelta;   
+    }
+
     insets = panelDatos.getInsets();
     
     textOrigenDatos = new JTextField(20);
@@ -81,10 +98,7 @@ public class VentanaDatos extends JFrame {
     textHoraIdaDatos = new JTextField(10);
     textHoraVueltaDatos = new JTextField(10);
     botonComprar = new JButton("Comprar");
-
-    precioIda = (VentanaInicio.vueloIda.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[0]) + (VentanaInicio.vueloIda.getPrecioBaseNinyio() * VentanaInicio.opcionesVuelo[1]) + (VentanaInicio.vueloIda.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[2]) + (VentanaInicio.vueloIda.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[3]);
-
-    precioVuelta = (VentanaInicio.vueloVuelta.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[0]) + (VentanaInicio.vueloVuelta.getPrecioBaseNinyio() * VentanaInicio.opcionesVuelo[1]) + (VentanaInicio.vueloVuelta.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[2]) + (VentanaInicio.vueloVuelta.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[3]);
+    labelPrecio = new JLabel((double)(precioTotal) + " €");
 
     textOrigenDatos.setBounds(200 + insets.left, 175 + insets.top, 240, 40);
     textDestinoDatos.setBounds(475 + insets.left, 175 + insets.top, 240, 40);
@@ -93,6 +107,7 @@ public class VentanaDatos extends JFrame {
     textHoraIdaDatos.setBounds(275 + insets.left, 305 + insets.top, 95, 40);
     textHoraVueltaDatos.setBounds(550 + insets.left, 305 + insets.top, 95, 40);
     botonComprar.setBounds(410 + insets.left, 470 + insets.top, 95, 40);
+    labelPrecio.setBounds(410 + insets.left, 410 + insets.top, 95, 30);
     
     if (VentanaInicio.opcionesVuelo[4] == 1) {
         
@@ -132,21 +147,58 @@ public class VentanaDatos extends JFrame {
         @Override
 			public void actionPerformed(ActionEvent e) {
                 if(VentanaInicio.opcionesVuelo[4] == 1){
-                    bd.editarBillete(new Billete(bd.getClienteEspecifico(VentanaLogin.usuario), VentanaInicio.vueloIda, VentanaInicio.opcionesVuelo[0], VentanaInicio.opcionesVuelo[1], VentanaInicio.opcionesVuelo[2], VentanaInicio.opcionesVuelo[3], precioIda), VentanaLogin.usuario);
-                    precioTotal = precioIda;
+                    bd.editarBillete(
+                            new Billete(bd.getClienteEspecifico(VentanaLogin.usuario), VentanaInicio.vueloIda,
+                                    VentanaInicio.opcionesVuelo[0], VentanaInicio.opcionesVuelo[1],
+                                    VentanaInicio.opcionesVuelo[2], VentanaInicio.opcionesVuelo[3], precioIda),
+                        VentanaLogin.usuario);
+                            
+                final int asientos1 = VentanaInicio.vueloIda.getAsientosClase1();
+                final int asientos2 = VentanaInicio.vueloIda.getAsientosClase2();
+                final int asientos3 = VentanaInicio.vueloIda.getAsientosClase3();
+
+                    if(VentanaInicio.opcionesVuelo[3] == 1){
+                        VentanaInicio.vueloIda.setAsientosClase1(asientos1 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                    }else if(VentanaInicio.opcionesVuelo[3] == 2){
+                        VentanaInicio.vueloIda.setAsientosClase2(asientos2 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                    }else{
+                        VentanaInicio.vueloIda.setAsientosClase3(asientos3 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                    }
+                    
+                    bd.editarVuelo(VentanaInicio.vueloIda);
             } else {
                 bd.editarBillete(
                         new Billete(bd.getClienteEspecifico(VentanaLogin.usuario), VentanaInicio.vueloIda,
                                 VentanaInicio.opcionesVuelo[0], VentanaInicio.opcionesVuelo[1],
-                                VentanaInicio.opcionesVuelo[2], VentanaInicio.opcionesVuelo[3], precioIda),
+                                VentanaInicio.opcionesVuelo[2], VentanaInicio.opcionesVuelo[3], (float)precioIda),
                         VentanaLogin.usuario);
-                System.out.println("Billete editado");
+                
                 bd.editarBillete(
                         new Billete(bd.getClienteEspecifico(VentanaLogin.usuario), VentanaInicio.vueloVuelta,
                                 VentanaInicio.opcionesVuelo[0], VentanaInicio.opcionesVuelo[1],
-                                VentanaInicio.opcionesVuelo[2], VentanaInicio.opcionesVuelo[3], precioVuelta),
+                                VentanaInicio.opcionesVuelo[2], VentanaInicio.opcionesVuelo[3], (float)precioVuelta),
                         VentanaLogin.usuario);
-                precioTotal = precioIda + precioVuelta;
+                
+                final int asientos1 = VentanaInicio.vueloIda.getAsientosClase1();
+                final int asientos2 = VentanaInicio.vueloIda.getAsientosClase2();
+                final int asientos3 = VentanaInicio.vueloIda.getAsientosClase3();
+                final int asientosVuelta1 = VentanaInicio.vueloVuelta.getAsientosClase1();
+                final int asientosVuelta2 = VentanaInicio.vueloVuelta.getAsientosClase2();
+                final int asientosVuelta3 = VentanaInicio.vueloVuelta.getAsientosClase3();
+
+                if(VentanaInicio.opcionesVuelo[3] == 1){
+                    VentanaInicio.vueloIda.setAsientosClase1(asientos1 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                    VentanaInicio.vueloVuelta.setAsientosClase1(asientosVuelta1 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                }else if(VentanaInicio.opcionesVuelo[3] == 2){
+                    VentanaInicio.vueloIda.setAsientosClase2(asientos2 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                    VentanaInicio.vueloVuelta.setAsientosClase2(asientosVuelta2 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                }else{
+                    VentanaInicio.vueloIda.setAsientosClase3(asientos3 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                    VentanaInicio.vueloVuelta.setAsientosClase3(asientosVuelta3 -  (int)(VentanaInicio.opcionesVuelo[0] + VentanaInicio.opcionesVuelo[1]));
+                }
+                
+                bd.editarVuelo(VentanaInicio.vueloIda);
+                bd.editarVuelo(VentanaInicio.vueloVuelta);
             }
                 VentanaInicio ventanaInicio = new VentanaInicio();
                 ventanaInicio.setVisible(true);
@@ -161,8 +213,8 @@ public class VentanaDatos extends JFrame {
     panelDatos.add(textHoraIdaDatos);
     panelDatos.add(textHoraVueltaDatos);
     panelDatos.add(botonComprar);
+    panelDatos.add(labelPrecio);
 
-    
     add(panelDatos);
     }
 }
