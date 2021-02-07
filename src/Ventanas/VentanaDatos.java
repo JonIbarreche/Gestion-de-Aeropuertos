@@ -78,6 +78,7 @@ public class VentanaDatos extends JFrame {
                     + (VentanaInicio.vueloIda.getPrecioBaseNinyio() * VentanaInicio.opcionesVuelo[1]);
         
             precioTotal = precioIda;
+            precioTotal = Math.round(precioTotal * 100) / 100;
             
     } else {
         precioIda = (VentanaInicio.vueloIda.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[0])
@@ -86,7 +87,8 @@ public class VentanaDatos extends JFrame {
         precioVuelta = (VentanaInicio.vueloVuelta.getPrecioBaseAdulto() * VentanaInicio.opcionesVuelo[0])
                 + (VentanaInicio.vueloVuelta.getPrecioBaseNinyio() * VentanaInicio.opcionesVuelo[1]);
         
-        precioTotal = precioIda + precioVuelta;   
+        precioTotal = precioIda + precioVuelta;
+        precioTotal = Math.round(precioTotal * 100) / 100;
     }
 
     insets = panelDatos.getInsets();
@@ -107,7 +109,7 @@ public class VentanaDatos extends JFrame {
     textHoraIdaDatos.setBounds(275 + insets.left, 305 + insets.top, 95, 40);
     textHoraVueltaDatos.setBounds(550 + insets.left, 305 + insets.top, 95, 40);
     botonComprar.setBounds(410 + insets.left, 470 + insets.top, 95, 40);
-    labelPrecio.setBounds(410 + insets.left, 410 + insets.top, 95, 30);
+    labelPrecio.setBounds(425 + insets.left, 410 + insets.top, 95, 30);
     
     if (VentanaInicio.opcionesVuelo[4] == 1) {
         
