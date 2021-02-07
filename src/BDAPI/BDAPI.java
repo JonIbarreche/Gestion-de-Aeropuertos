@@ -6,6 +6,11 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.sql.ResultSet;
 
 import Jerarquias.Admin;
@@ -14,6 +19,7 @@ import Jerarquias.Billete;
 import Jerarquias.Cliente;
 import Jerarquias.Usuario;
 import Jerarquias.Vuelo;
+import logger.Log;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -68,8 +74,10 @@ public class BDAPI {
                 stmt.execute(queryCreateTableVuelos);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Conexion con la base de datos establecida");
     }
 
     // Editar aeropuerto
@@ -124,8 +132,10 @@ public class BDAPI {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Aeropuerto actualizado correctamente");
         return tmpAeropuerto;
     }
 
@@ -186,8 +196,10 @@ public class BDAPI {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Cliente actualizado correctamente");
         return cliente;
     }
 
@@ -239,8 +251,10 @@ public class BDAPI {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Admin actualizado correctamente");
         return admin;
     }
 
@@ -258,7 +272,7 @@ public class BDAPI {
                         if (rs.getInt("id") == tmpVuelo.getId()) {
                             String sqlUpdate = "UPDATE vuelos SET (aerolinea, designator, aeropuerto_origen, aeropuerto_destino, precio_base_adulto, precio_base_ninyio, precio_maleta, fecha, hora, asientos_clase_1, asientos_clase_2, asientos_clase_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                             PreparedStatement pst = conn.prepareStatement(sqlUpdate);
-
+ 
                             pst.setString(1, tmpVuelo.getAerolinea());
                             pst.setString(2, tmpVuelo.getDesignator());
                             pst.setInt(3, tmpVuelo.getAeropuertOrigen().getId());
@@ -303,13 +317,13 @@ public class BDAPI {
                         tmpVuelo.setId(rsID.getInt("id"));
                     }
                 } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                    logger.Log.getLOGGER().log(Level.SEVERE,e.toString());
+                  }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Vuelo actualizado correctamente");
         return vuelo;
     }
 
@@ -375,13 +389,15 @@ public class BDAPI {
                         
                     }
                 } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+                    logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Billete actualizado correctamente");
         return tmpBillete;
     }
 
@@ -408,8 +424,10 @@ public class BDAPI {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Aeropuerto eliminado correctamente");
     }
 
     // Eliminar cliente
@@ -435,8 +453,10 @@ public class BDAPI {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Cliente eliminado correctamente");
     }
 
     // Eliminar admin
@@ -462,8 +482,10 @@ public class BDAPI {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Admin eliminado correctamente");
     }
 
     // Eliminar vuelo
@@ -489,8 +511,10 @@ public class BDAPI {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Vuelo elimindado correctamente");
     }
 
     // Eliminar billete
@@ -516,8 +540,10 @@ public class BDAPI {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Billete eliminado correctamente");
     }
 
     // Listar aeropuertos
@@ -534,9 +560,10 @@ public class BDAPI {
                 listaAeropuertos.add(a1);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Lista de aeropouertos obtenida correctamente");
         return listaAeropuertos;
     }
 
@@ -553,9 +580,10 @@ public class BDAPI {
                         rs.getString("telefono")));
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Lista de clientes obtenida correctamente");
         return listaClientes;
     }
 
@@ -570,9 +598,10 @@ public class BDAPI {
                 listaAdmins.add(new Admin(rs.getString("username"), rs.getString("password"), rs.getInt("nivel")));
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Lista de admins obtenida correctamente");
         return listaAdmins;
     }
 
@@ -620,9 +649,10 @@ public class BDAPI {
                         rs.getInt("asientos_clase_2"), rs.getInt("asientos_clase_3")));
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Lista de vuelos obtenida correctamente");
         return listaVuelos;
     }
 
@@ -676,9 +706,10 @@ public class BDAPI {
                         rs.getInt("numero_maletas"), rs.getInt("clase"), rs.getFloat("precio")));
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Lista de billetes obtenida correctamente");
         return listaBilletes;
     }
 
@@ -770,12 +801,14 @@ public class BDAPI {
                 pstExisteAeropuertoDestino.close();
                 pst.close();
                 System.out.println("devuelve Vuelo");
-                return vuelo;
 
+                return vuelo;
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Vuelo obtenido correctamente");
         return null;
     }
 
@@ -796,8 +829,10 @@ public class BDAPI {
             clienteEspecifico.setId(rsCliente.getInt("id"));
             pstCliente.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Admin " + String.valueOf(clienteEspecifico.getId()) + " obtenid correctamente");
         return clienteEspecifico;
     }
 
@@ -817,8 +852,10 @@ public class BDAPI {
             adminEspecifico.setId(rsAdmin.getInt("id"));
             pstAdmin.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Admin " + String.valueOf(adminEspecifico.getId()) + " obtenid correctamente");
         return adminEspecifico;
     }
     
@@ -839,9 +876,12 @@ public class BDAPI {
                 rsCliente.getString("email"), rsCliente.getString("telefono")));
             }
             pstVuelo.close();
+
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Warning", JOptionPane.WARNING_MESSAGE);
+            logger.Log.getLOGGER().log(Level.SEVERE, e.toString());
         }
+        logger.Log.getLOGGER().info("Lista de clientes del vuelo " + String.valueOf(vuelo.getId()) + " obtenida correctamente");
         return listaClientesVuelo;
     }
     // public Vuelo getUsuarioEspecifico(String usuario, String password) {
